@@ -7,8 +7,8 @@
   "description": "Logging server which provides unique session ids and receives logging data for all sessions running in the online version of google blockly",
   "main": "index.js",
   "scripts": {
-    "postinstall": "cd backend && npm install",
-    "start": "(cd backend && node index --ignore-scripts)",
+    "postinstall": "(cd backend && npm install --ignore-scripts)",
+    "start": "cd backend && node index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
