@@ -5,7 +5,7 @@ if (!window.dwenguinoBlocklyServer) {
 };
 
 // window.serverUrl = 'http://localhost:12032';
-window.serverUrl = 'https://dwbl.herokuapp.com/dwenguinoblockly/';
+window.serverUrl = 'https://dwbl.herokuapp.com/dwenguinoblockly';
 
 var DwenguinoBlockly = {
     simButtonStateClicked: false,
