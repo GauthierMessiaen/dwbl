@@ -30,7 +30,7 @@ app.use(bodyParser.json({ type: 'application/*+json' }));
 // Depricate: mongoose.connect();
 // var dev_db_url = 'mongodb://localhost/dwenguinoblockly'
 var dev_db_url = 'mongodb+srv://gauthier:Neaissem135@cluster0-fistj.azure.mongodb.net/dwbl?retryWrites=true&w=majority'
-var mongoDB = dev_db_url;
+var mongoDB = process.env.MONGODB_URI || dev_db_url;
 
 mongoose.connect(mongoDB, {
     useNewUrlParser: true,
