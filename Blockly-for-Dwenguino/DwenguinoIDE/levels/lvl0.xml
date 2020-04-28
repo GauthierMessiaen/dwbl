@@ -288,7 +288,7 @@
     <block type="drawingrobot_lift_stylus"></block>
     <block type="drawingrobot_lower_stylus"></block>
     <block type="drawingrobot_color">
-        <field name="color">#ff0000</field>
+        <field name="col">#ff0000</field>
     </block>
 </category>
 
