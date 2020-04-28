@@ -15,7 +15,7 @@ var logSchema = mongoose.Schema({
         name: {
             type: String,
             required: true
-        }, 
+        },
         data: String,
     }
 });

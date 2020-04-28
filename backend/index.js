@@ -28,8 +28,9 @@ app.use(bodyParser.json({ type: 'application/*+json' }));
 
 // connect to Mongoose and set connection variable
 // Depricate: mongoose.connect();
-var dev_db_url = 'mongodb://localhost/dwenguinoblockly'
-var mongoDB = process.env.MONGODB_URI || dev_db_url;
+// var dev_db_url = 'mongodb://localhost/dwenguinoblockly'
+var dev_db_url = 'mongodb+srv://gauthier:Neaissem135@cluster0-fistj.azure.mongodb.net/dwbl?retryWrites=true&w=majority'
+var mongoDB = dev_db_url;
 
 mongoose.connect(mongoDB, {
     useNewUrlParser: true,
@@ -58,21 +59,14 @@ let server = app.listen(port, function () {
 
 
 // Launch a browser window
-const ChromeLauncher = require('chrome-launcher');
-ChromeLauncher.launch({
-   startingUrl: 'http://localhost:12032/dwenguinoblockly',
-   chromeFlags: ['--star-fullscreen', '--start-maximized'],
-}).then(chrome => {
-   chrome.process.on('close', (code) => {
-        console.log("browser window closed, closing application");
-        server.close();
-        process.exit();
-   });
-});
-
-
-
-
-
-
-
+// const ChromeLauncher = require('chrome-launcher');
+// ChromeLauncher.launch({
+//    startingUrl: 'http://localhost:12032/dwenguinoblockly',
+//    chromeFlags: ['--star-fullscreen', '--start-maximized'],
+// }).then(chrome => {
+//    chrome.process.on('close', (code) => {
+//         console.log("browser window closed, closing application");
+//         server.close();
+//         process.exit();
+//    });
+// });
