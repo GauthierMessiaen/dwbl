@@ -38,14 +38,20 @@ var DwenguinoEventLogger = {
 
             if (!DwenguinoEventLogger.sessionId){
                 // Try to get a new sessionId from the server to keep track
-                $.ajax({
-                    type: "GET",
-                    url: window.serverUrl + "/logging/id"}
-                ).done(function(data){
-                    DwenguinoEventLogger.sessionId = data;
-                }).fail(function(response, status)  {
-                    console.warn('Failed to fetch sessionId:', status);
-                });
+                if(window.localStorage.sessionID){
+                    DwenguinoEventLogger.sessionId = window.localStorage.sessionID
+                } else {
+                    $.ajax({
+                        type: "GET",
+                        url: window.serverUrl + "/logging/id"}
+                    ).done(function(data){
+                        DwenguinoEventLogger.sessionId = data;
+                        window.localStorage.sessionID = data;
+                    }).fail(function(response, status)  {
+                        console.warn('Failed to fetch sessionId:', status);
+                    });
+                }
+                
             }
         },
   

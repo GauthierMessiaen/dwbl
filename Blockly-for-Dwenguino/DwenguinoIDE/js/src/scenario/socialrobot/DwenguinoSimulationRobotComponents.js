@@ -23,15 +23,16 @@ interact('.draggable')
     onmove: dragMoveListener,
     // call this function on every dragend event
     onend: function (event) {
-      var textEl = event.target.querySelector('p')
+      if(event.target.className.includes("sim_element")){
+        var textEl = event.target.querySelector('p')
+        textEl && (textEl.textContent =
+          'moved a distance of ' +
+          (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
+                    Math.pow(event.pageY - event.y0, 2) | 0))
+            .toFixed(2) + 'px')
 
-      textEl && (textEl.textContent =
-        'moved a distance of ' +
-        (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
-                   Math.pow(event.pageY - event.y0, 2) | 0))
-          .toFixed(2) + 'px')
-
-      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("moveRobotComponent", event.target.id));
+        DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("moveRobotComponent", event.target.id));
+      }
     }
   })
 

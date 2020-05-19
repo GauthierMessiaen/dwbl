@@ -139,6 +139,7 @@ var MSG = {
   bounds:"Opgelet\nJe probeert buiten het papier te tekenen",
   drawingrobotgrid: "raster",
   colorpicker:"Kleur",
+  example:"Voorbeeld",
   drawingrobotSaveImage:"Tekening opslaan",
   drawingrobotDrawing:"Tekening",
   currentCoordinates: "Huidige coordinaten",
@@ -713,7 +714,9 @@ MSG.tutorials.socialrobot['hello'].answers = [
  */
 // general messages
 MSG.tutorials.drawingrobot.error = "Fout:";
-MSG.tutorials.drawingrobot.error_requirements = "<b>Jouw oplossing voldoet nog niet aan de voorwaarden:</b><br><br>";
+MSG.tutorials.drawingrobot.hint = "Hint:";
+MSG.tutorials.drawingrobot.error_requirements = "<b>Jouw oplossing voldoet nog niet aan de voorwaarden:</b>";
+MSG.tutorials.drawingrobot.better = "<i>De oefening kon wel op een betere manier opgelost worden. Denk eens na hoe en ga dan door naar de volgende oefening.</i>";
 // ----- part 1 -----
 MSG.tutorials.drawingrobot['part1_1'] = {};
 MSG.tutorials.drawingrobot['part1_1'].label = 'Deel 1: Uitleg';
@@ -723,14 +726,10 @@ MSG.tutorials.drawingrobot['part1_1'].stepTitles = [
   "Teken robot",
   "Het \"Zet klaar\" blok",
   "Selecteer het juiste blok en sleep het naar \"Zet klaar\"",
-  "FOUT:",
-  "FOUT:",
   "Breedte en Hoogte aanpassen",
   "Speel de simulatie af",
   "Cirkel tekenen",
   "Verwijder het rechthoek blok en plaats het juiste blok in \"Zet klaar\"",
-  "FOUT:",
-  "FOUT:",
   "Speel de simulatie af",
 ];
 MSG.tutorials.drawingrobot['part1_1'].stepContents = [
@@ -738,47 +737,44 @@ MSG.tutorials.drawingrobot['part1_1'].stepContents = [
   "Indien de simulator nog niet open staat, druk je op deze knop om die te openen.",
   "Selecteer de teken robot.  ",
   "Dit blok zal al de code bevatten die 1x moet worden uitgevoerd. We zullen de blokken in de volgende stappen hier inslepen.",
-  "Klik op <b>Teken robot</b> en selecteer vervolgens het blok "
+  "<div class=\"tutorial_error_message\"></div>"
+    + "Klik op <b>Teken robot</b> en selecteer vervolgens het blok "
     + "<div class='row'><img class='tutorial tutorial_img' src='./DwenguinoIDE/img/tutorials/drawingrobot/block_rectangle.png'></div>"
     + "<p class='tutorial tutorial_img_txt'><i>Teken een rechthoek met breedte: 10 en hoogte: 10</i></p>"
     + "<br>Sleep dan dit blok naar <b>Zet klaar</b>",
-  "Het blok moet in \"zet klaar\" staan en niet in \"Herhaal\" of erbuiten"
-    + "<div class='row'><img class='tutorial tutorial_img_txt tutorial_img' src='./DwenguinoIDE/img/tutorials/drawingrobot/block_rectangle.png'>"
-    + "<p class='tutorial tutorial_img_txt'><i>Teken een rechthoek met breedte: 10 en hoogte: 10</i></p></div>",
-  "Je hebt het verkeerde blok gekozen. Selecteer het volgende blok:"
-    + "<div class='row'><img class='tutorial tutorial_img_txt tutorial_img' src='./DwenguinoIDE/img/tutorials/drawingrobot/block_rectangle.png'>"
-    + "<p class='tutorial tutorial_img_txt'><i>Teken een rechthoek met breedte: 10 en hoogte: 10</i></p></div>",
   "De breedte en de hoogte mag je aanpassen naar zelfgekozen getallen.<br>De lengte van 1 vakje in het raster is 10.",
-  "Druk op de knop om de simulatie te laten lopen, de robot zal nu jouw tekening maken. Je mag gerust verschillende waardes uitproberen voor de lengte/breedte.",
+  "Druk op de knop om de simulatie te laten lopen, de robot zal nu jouw tekening maken. Je mag gerust verschillende waarden uitproberen voor de lengte/breedte.",
   "Nu gaan we de rechthoek verwijderen en een cirkel tekenen",
-  "Sleep het code blok voor een rechthoek te tekenen naar het vuilbakje of selecteer het blok en druk op de backspace toets op je toetsenbord. <br><br>"
+  "<div class=\"tutorial_error_message\"></div>"
+  + "Sleep het code blok voor een rechthoek te tekenen naar het vuilbakje of selecteer het blok en druk op de backspace toets op je toetsenbord.<br><br>"
     + "Klik vervolgens op <b>Teken robot</b> en selecteer het blok voor een cirkel te tekenen"
     + "<div class='row'><img class='tutorial tutorial_img_txt tutorial_img' src='./DwenguinoIDE/img/tutorials/drawingrobot/block_circle.png'>"
     + "<p class='tutorial tutorial_img_txt'><i>Teken een cirkel met straal 10</i></p></div>"
     + "<br>Sleep dan dit blok naar <b>Zet klaar</b>.<br>Je mag nu ook de straal van de cirkel aanpassen.",
-  "Het blok voor de cirkel moet in \"zet klaar\" staan en niet in \"Herhaal\" of erbuiten"
-    + "<div class='row'><img class='tutorial tutorial_img_txt tutorial_img' src='./DwenguinoIDE/img/tutorials/drawingrobot/block_circle.png'>"
-    + "<p class='tutorial tutorial_img_txt'><i>Teken een cirkel met straal: 10</i></p></div>",
-  "Dit is het verkeerde blok. Je hebt het blok voor de cirkel nodig."
-    + "<div class='row'><img class='tutorial tutorial_img_txt tutorial_img' src='./DwenguinoIDE/img/tutorials/drawingrobot/block_circle.png'>"
-    + "<p class='tutorial tutorial_img_txt'><i>Teken een cirkel met straal: 10</i></p></div>",
   "Druk op de knop om de simulatie te laten lopen. De robot zal nu een cirkel tekenen.",
 ];
-
+MSG.tutorials.drawingrobot['part1_1'].hints = [
+"<li>Dit is een hint</li>",
+];
 //-------
 
 MSG.tutorials.drawingrobot['part1_2'] = {};
 MSG.tutorials.drawingrobot['part1_2'].label = 'Deel 1: Oefening';
 MSG.tutorials.drawingrobot['part1_2'].stepTitles = [
-  "Oefening",
-  "Fout:",
+  "Oefeningen",
+  "Oefening 1",
   "Proficiat",
 ];
 MSG.tutorials.drawingrobot['part1_2'].stepContents = [
-  "Dit is een oefening die je zelf moet oplossen. Jouw taak is om zowel een cirkel als een rechthoek te tekenen.<br><br>"
-    + "In de oefeningen mag je gerust ook altijd spelen met de kleuren van de tekening. Dit doe je door het <b>kleur</b> blok te gebruiken",
-  "Er zit nog een fout in de code. De tekening moet 1 cirkel en 1 rechthoek bevatten.",
-  "Proficiat, de oefening is correct opgelost. Klik op de play knop om het te testen.",
+  "Na de uitleg komt er meestal een oefening waarbij er getest wordt of je de blokken kan gebruiken die je juist gezien hebt. De meeste van deze oefeningen maken een deel uit van 1 grote tekening die we op het einde zullen maken. Een voorbeeld van deze tekening kan je nu ook zien.",
+  "<div class=\"tutorial_error_message\"></div>"
+    + "Dit is de eerste oefening die je zelf moet oplossen. Jouw taak is om zowel een <b>cirkel</b> als een <b>rechthoek</b> te tekenen.<br><br>"
+    + "In de oefeningen mag je gerust ook altijd spelen met de kleuren van de tekening. Dit doe je door het <b>kleur</b> blok te gebruiken.<br><br>"
+    + "Elke oefening toont ook een voorbeeld van hoe een tekening van de oplossing er uit kan zien. Dit is maar een mogelijke oplossing en jouw oplossing moet hier niet mee overeen komen. Je mag zo creatief zijn als je zelf wil (zolang de oefening het toelaat).",
+  "Proficiat, de oefening is correct opgelost. Klik op de play knop om het te testen.<br><br>"
+];
+MSG.tutorials.drawingrobot['part1_2'].hints = [
+  "<li>Dit is een hint</li>",
 ];
 
 // ----- part 2 -----
@@ -837,7 +833,16 @@ MSG.tutorials.drawingrobot['part2_1'].stepContents = [
     "Je kan de combinatie van deze 3 blokken (stift opheffen, lijn tekenen, stift neerzetten) gebruiken om naar een punt te gaan alvorens te beginnen tekenen.",
     "Ga nu verder met de oefening van deel 2."
 ];
-
+MSG.tutorials.drawingrobot['part2_1'].hints = [
+  "<li>De code moet in <b>Zet klaar</b> staan en niet in <b>Herhaal</b></li>",
+  "<li>Je gebruikt een blok dat niet toegelaten is</li>",
+  "<li>Je hebt 2 blokken nodig van het type <b>Verplaats de stift ... met ... stappen</b></li>",
+  "<li>De richting van beide blokken moet verschillend zijn</li>",
+  "<li>Je hebt 3 blokken nodig van het type <b>Teken een lijn naar x:... y:...</b></li>",
+  "<li>Je gebruikt de verkeerde punten</li>",
+  "<li>Je hebt 1 blok nodig van het type <b>Stift opheffen</b></li>",
+  "<li>Je hebt 1 blok nodig van het type <b>Stift neerzetten</b></li>",
+];
 
 //-------
 
@@ -851,24 +856,35 @@ MSG.tutorials.drawingrobot['part2_2'].stepTitles = [
 ];
 MSG.tutorials.drawingrobot['part2_2'].stepContents = [
   "<div class=\"tutorial_error_message\"></div>"
-    + "De bedoeling van de eerste oefening is om een vierkant te tekenen via de blokken die we juist gezien hebben."
+    + "De bedoeling van de eerste oefening is om eerst naar coordinaten (200,100) te gaan zonder een lijn te tekenen en van hieruit een vierkant te tekenen via de blokken die we juist gezien hebben.<br>"
     + " De toegelaten blokken zijn:"
     + "<ul><li><b>Teken een lijn naar ...</b></li>"
-    + "<li><b>verplaats de stift ... met ... stappen</b></li></ul>"
-    + "Beide blokken moeten minstens 1x gebruikt worden.",
-  "Goed zo, jouw oplossing voldoet aan de voorwaarden.<br>",
+    + "<li><b>verplaats de stift ... met ... stappen</b></li>"
+    + "<li><b>Stift opheffen</b></li>"
+    + "<li><b>Stift neerzetten</b></li></ul>"
+    + "Al de blokken moeten minstens 1x gebruikt worden.<br><br>"
+    + "<i>(In elke oefening mag je het kleur blok gebruiken, zelfs al staat dit niet bij de toegelaten blokken)</i>",
+  "Goed zo, jouw oplossing voldoet aan de voorwaarden.<br><br>"
+    + "<div class=\"tutorial_error_message\"></div>",
   "<div class=\"tutorial_error_message\"></div>"
     + "Bij deze oefening gaan we een huis tekenen. Dit huis moet aan een aantal zaken voldoen:"
     + "<ul>"
       + "<li>Zorg dat je tekening start op het punt (200,100)</li>"
-      + "<li>Dit gebeurt via de blokken <b>stift opheffen/neerzetten</b> en <b>Teken een lijn naar ...</b></li>"
-      + "<li>De tekening heeft 2 verdiepen</li>"
-      + "<li>De tekening heeft een dak</li>"
+      + "<li>Het huis heeft 2 verdiepen</li>"
+      + "<li>Het huis heeft een dak</li>"
     + "</ul>"
     + "Al de blokken die we tot nu toe gezien hebben mogen hierbij gebruikt worden.",
   "Goed zo. Deze oefening is correct. Je mag doorgaan naar het volgende deel."
 ];
-
+MSG.tutorials.drawingrobot['part2_2'].hints = [
+  "<li>Je hebt minstens 1 blok nodig van het type <b>Teken een lijn naar x:... y:...</b></li>",
+  "<li>Je hebt minstens 1 blok nodig van het type <b>Verplaats de stift ... met ... stappen</b></li>",
+  "<li>Je hebt minstens 1 blok nodig van het type <b>Stift opheffen</b></li>",
+  "<li>Je hebt minstens 1 blok nodig van het type <b>Stift neerzetten</b></li>",
+  "<li>Je gebruikt te weinig blokken om een mogelijke oplossing te hebben</li>",
+  "<li>Je gebruikt te veel blokken</li>",
+  "<li>Begin de tekening met naar een andere locatie te gaan</li>",
+];
 
 
 
@@ -887,7 +903,9 @@ MSG.tutorials.drawingrobot['part3_1'].stepContents = [
     + "Hierbij moet je de code overlopen, testen, zoeken naar fouten en deze er dan uithalen.<br>",
   "Proficiat, nu werkt het programma zoals het zou moeten werken."
 ];
-
+MSG.tutorials.drawingrobot['part3_1'].hints = [
+  "<li>Dit is een hint</li>",
+];
 // -------
 
 MSG.tutorials.drawingrobot['part3_2'] = {};
@@ -901,6 +919,9 @@ MSG.tutorials.drawingrobot['part3_2'].stepContents = [
   "<div class=\"tutorial_error_message\"></div>"
     + "De opgave was om via 4 lijnen een vierkant te tekenen met als lengte <b>40</b>. Als je het programma test kan je zien dat dit verkeerd is. Wijzig de code zodat het klopt.",
   "Goed zo. In een later deel zullen we nog een oefening maken op debuggen, maar eerst gaan we een aantal andere zaken bekijken."
+];
+MSG.tutorials.drawingrobot['part3_2'].hints = [
+  "<li>Dit is een hint</li>",
 ];
 
 // ----- part 4 -----
@@ -937,7 +958,7 @@ MSG.tutorials.drawingrobot['part4_1'].stepContents = [
   "<div class=\"tutorial_error_message\"></div>"
     + "In <b>Formules</b> vind je het volgende blok:"
     + "<div class='row'><img class='tutorial tutorial_img_txt tutorial_img' src='/dwenguinoblockly/DwenguinoIDE/img/tutorials/drawingrobot/block_number.png'></div>"
-    + "<div class='tutorial tutorial_img_txt'><i>getal (100)</i></div>"
+    + "<div class='tutorial tutorial_img_txt'><i>100</i></div>"
     + "<ul>"
     +     "<li>Sleep dit blok zodat het <b>rechts</b> hangt van het vorige blok.</li>"
     +     "<li>Verander de waarde naar <b>30</b></li>"
@@ -972,7 +993,17 @@ MSG.tutorials.drawingrobot['part4_1'].stepContents = [
   "Als je de code nog niet hebt uitgetest, doe dit dan nu.",
   "Ga nu verder moet de oefening",
 ];
-
+MSG.tutorials.drawingrobot['part4_1'].hints = [
+  "<li>De variabele is verkeerd</li>",
+  "<li>Het getal is verkeerd</li>",
+  "<li>Het getal moet <b>rechts</b> hangen van het <b>stel lengte in op:</b> blok</li>",
+  "<li><b>Teken een rechthoek</b> moet onder <b>Stel lengte in op</b> staan</li>",
+  "<li>De <b>breedte</b> en <b>hoogte</b> moeten ingevuld worden met de variabele <b>lengte</b></li>",
+  "<li>De getallen zijn verkeerd</li>",
+  "<li>Het <b>...+...</b> block is verkeerd ingevuld. Dit moet <b>lengte + 20</b> zijn.</li>",
+  "<li>Er moeten <b>2</b> rechthoeken getekend worden, beide met <b>hoogte</b> en <b>breedte</b> gelijk aan <b>langte</b></li>",
+  "<li>Het tweede <b>Stel lengte in op</b> blok moet onder het <b>Teken een rechthoek</b> blok staan</li>",
+];
 // -------
 
 MSG.tutorials.drawingrobot['part4_2'] = {};
@@ -990,11 +1021,21 @@ MSG.tutorials.drawingrobot['part4_2'].stepContents = [
     +   "<li>b = a - 10</li>"
     +   "<li>c = a x b</li>"
     + "</ul>"
-    + "Als laatste teken je een aantal zaken die de 3 variabelen gebruikt. Je mag zelf kiezen wat je tekent, zolang de 3 variabelen gebruikt worden",
+    + "Als laatste teken je een aantal zaken die de 3 variabelen gebruikt. Je mag zelf kiezen wat je tekent, zolang de 3 variabelen minstens 1x gebruikt worden",
   "Goed zo, Je mag gerust nog wat zaken uitproberen zoals de variabele <b>b</b> te proberen wegwerken door een langere formule te gebruiken om <b>c</b> te berekenen. "
     + "Hierbij zal je dan <b>Formules</b> blokken in elkaar moeten gebruiken. Als je gedaan hebt mag je doorgaan naar het volgende deel."
 ];
-
+MSG.tutorials.drawingrobot['part4_2'].hints = [
+  "<li>Een variabele is van het verkeerde type (<b>tekst</b> in plaats van <b>getal</b>)</li>",
+  "<li>Een variabele heeft een verkeerde naam</li>",
+  "<li>Je gebruikt te weinig blokken voor een correcte oplossing te hebben</li>",
+  "<li>Niet alle nodige variabelen zijn aangemaakt</li>",
+  "<li>Je hebt nog geen <b>...x...</b> blok gebruikt</li>",
+  "<li>Je hebt nog geen <b>...-...</b> blok gebruikt</li>",
+  "<li>Minstens 1 van de variabelen wordt nog niet gebruikt in de tekening</li>",
+  "<li><b>...-...</b> blok is incorrect</li>",
+  "<li><b>...x...</b> blok is incorrect</li>",
+];
 
 // ----- part 5 -----
 MSG.tutorials.drawingrobot['part5_1'] = {};
@@ -1006,7 +1047,14 @@ MSG.tutorials.drawingrobot['part5_1'].stepTitles = [
   "Voorbeeld condities",
   "Voorbeeld condities",
   "Testen",
-  "Extra"
+  "Extra",
+  "Tweede voorbeeld",
+  "Tweede voorbeeld",
+  "Tweede voorbeeld",
+  "Test de code",
+  "Test de code",
+  "Tweede voorbeeld",
+  "Einde"
 ];
 MSG.tutorials.drawingrobot['part5_1'].stepContents = [
   "Deze tutorial zal uitleggen wat condities/voorwaarden precies zijn en hoe je hiermee kan werken.<br>"
@@ -1050,14 +1098,59 @@ MSG.tutorials.drawingrobot['part5_1'].stepContents = [
     +   "<li>Een <b>als</b> ... <b>dan</b> ... <b>anders als</b> ... <b>dan</b> ... block.<br>Hierbij kan je meerdere vragen gebruiken in plaats van 1 waar/niet waar vraag</li>"
     +   "<li>Een <b>als</b> ... <b>dan</b> ... blok in een ander <b>als</b> of <b>dan</b> block steken.</li>"
     + "</ul><br>"
-    + "Probeer hier nu zelf wat mee te spelen, voordat je doorgaat naar het volgende deel. Probeer ook eens het <b>=</b> teken te veranderen naar een ander teken zoals <b><</b> of <b>></b><br><br>"
+    + "Probeer hier nu zelf wat mee te spelen, voordat je verder gaat. Probeer ook eens het <b>=</b> teken te veranderen naar een ander teken zoals <b><</b> of <b>></b><br><br>"
     + "<b>als</b> ... <b>dan</b> ... <b>anders als</b> ... <b>dan</b> blok kan je vinden door op het <b>tandwiel</b> icoontje te klikken. Dan zal je het volgende scherm krijgen:"
     + "<div class='row'><img class='tutorial tutorial_img_txt tutorial_img' src='./DwenguinoIDE/img/tutorials/drawingrobot/block_if_extra.png'></div>"
     + "<div class='tutorial tutorial_img_txt'><i>extra opties</i></div>"
     + "In het linkervak van dit scherm kan je dan een <b>anders als</b> blok verslepen naar het <b>rechtervak</b>. Klik nadien weer op het <b>tandwiel</b> icoontje om dit scherm te sluiten."
-    + "Om het <b>anders als</b> blok weer te <b>verwijderen</b>, open je opnieuw het scherm met extra opties en versleep je het <b>anders als</b> blok naar het <b>linkervak</b>"
+    + "Om het <b>anders als</b> blok weer te <b>verwijderen</b>, open je opnieuw het scherm met extra opties en versleep je het <b>anders als</b> blok naar het <b>linkervak</b>",
+  "In de volgende oefening gaan we de bestaande oefening aanpassen. De code waar we van gaan beginnen zal automatisch op het scherm komen. Het meestte van deze code zal je herkennen uit de oefening die we juist gedaan hebben.",
+  "<div class=\"tutorial_error_message\"></div>"
+    + "In deze nieuwe opdracht gaan we controleren of een bepaalde knop is ingduwd. Zoja, dan wordt er een vierkant getekend. Zonee, dan wordt er een cirkel getekend.<br><br>"
+    + "In <b>Dwenguino</b> vind je het volgende blok:"
+    + "<div class='row'><img class='tutorial tutorial_img_txt tutorial_img' src='./DwenguinoIDE/img/tutorials/drawingrobot/block_read_button.png'></div>"
+    + "<div class='tutorial tutorial_img_txt'><i>lees waarde knop NOORD</i></div>"
+    + "Plaats dit blok links in het <b>... = ...</b> block<br><br>"
+    + "Dit blok zal kijken of de knop <b>NOORD</b> is ingedrukt. (Je mag deze knop aanpassen naar een van de andere opties, zoals MIDDEN,OOST,..., als je dit wil.)",
+  "<div class=\"tutorial_error_message\"></div>"
+    + "In <b>Dwenguino</b> vind je het volgende blok:"
+    + "<div class='row'><img class='tutorial tutorial_img_txt tutorial_img' src='./DwenguinoIDE/img/tutorials/drawingrobot/block_pressed.png'></div>"
+    + "<div class='tutorial tutorial_img_txt'><i>INGEDRUKT</i></div>"
+    + "Plaats dit blok rechts in het <b>... = ...</b> block<br><br>"
+    + "Nu zal er dus gecontroleerd worden of de knop ingedrukt is of niet.",
+  "Test de code uit. De knoppen waar je op kan klikken zijn deze 5 knoppen op het bord.<br>(NOORD is de bovenste knop, ZUID de onderste, enzovoort.)<br><br>"
+    + "Er zal momenteel nog een probleem zijn bij het uittesten. zie je het?",
+  "Zoals je kan zien wordt er momenteel enkel een cirkel getekend, nog voordat je op de knop kan drukken. We zullen nu de code aanpassen zodat je de tijd krijgt om te kiezen of je de knop al dan niet wil indrukken.",
+  "<div class=\"tutorial_error_message\"></div>"
+    + "In <b>Dwenguino</b> vind je het volgende blok:"
+    + "<div class='row'><img class='tutorial tutorial_img_txt tutorial_img' src='./DwenguinoIDE/img/tutorials/drawingrobot/block_wait.png'></div>"
+    + "<div class='tutorial tutorial_img_txt'><i>wacht 100 ms</i></div>"
+    + "Plaats dit blok <b>boven</b> het <b>als/dan/anders</b> blok en verander de waarde naar <b>3000</b>.<br><br>"
+    + "Als je de code nu laat lopen zal het programma eerst 3 seconden wachten voordat het gaat controleren of de knop is ingeduwd. Nu heb je dus 3 seconden de tijd om de knop in te duwen (en in te blijven duwen tot het begint te tekenen).",
+  "Goed gedaan, dit was al een grotere oefening dan de vorige. Je bent al zeer goed bezig."    
 ];
-
+MSG.tutorials.drawingrobot['part5_1'].hints = [
+  "<li>Er staat nog geen <b>als...dan...anders</b> blok</li>",
+  "<li>Er is nog geen variabele ingesteld</li>",
+  "<li>De variabele heeft niet de correcte waarde</li>",
+  "<li>Er is een fout bij een van de vorige stappen</li>", // 3
+  "<li>Er is nog geen <b>...=...</b> blok</li>",
+  "<li>Het vergelijkingsblok gebruikt iets anders dan '='</li>",
+  "<li>Er staat geen <b>Teken een rechthoek</b> blok in <b>dan</b></li>",
+  "<li>Er staat geen <b>Teken een cirkel</b> blok in <b>anders</b></li>",
+  "<li>Het <b>... = ...</b> blok heeft nog lege velden</li>",
+  "<li>Het <b>... = ...</b> blok is verkeerd ingevuld</li>",
+  "<li>Het vergelijkings blok heeft niet het <b>=</b> teken</li>",
+  "<li>Er wordt nog geen <b>Teken een rechthoek</b> of <b>Teken een cirkel</b>blok gebruikt</li>",
+  "<li>Er is nog geen <b>lees waarde knop ...</b> blok</li>", // 12
+  "<li>Het <b>lees waarde knop ...</b> blok staat niet op de juiste plaats</li>",
+  "<li>Het <b>...=...</b> blok staat niet op de juiste plaats</li>",
+  "<li>Er is nog geen <b>Ingedrukt</b> blok</li>", // 15
+  "<li>Het <b>Ingedrukt</b> blok staat niet op de juiste plaats</li>",
+  "<li>Er is nog geen <b>wacht ... ms</b> blok</li>", // 17
+  "<li>Het <b>wacht ... ms</b> blok staat niet op de juiste plaats</li>",
+  "<li>De tijd in het <b>wacht ... ms</b> blok is te kort</li>",
+];
 
 // ----- part 6 -----
 MSG.tutorials.drawingrobot['part6_1'] = {};
@@ -1067,6 +1160,11 @@ MSG.tutorials.drawingrobot['part6_1'].stepTitles = [
   "Inleiding",
   "Inleiding",
   "Voorbeeld 1",
+  "Voorbeeld 1: 'tel' lus",
+  "Voorbeeld 1: 'tel' lus",
+  "Voorbeeld 1: 'tel' lus",
+  "Voorbeeld 1: 'tel' lus",
+  "Voorbeeld 1: 'tel' lus",
   "Voorbeeld 1: 'tel' lus",
   "Voorbeeld 1: 'tel' lus",
   "Voorbeeld 1: testen",
@@ -1096,22 +1194,33 @@ MSG.tutorials.drawingrobot['part6_1'].stepContents = [
     + "In <b>Lussen</b> vind je het volgende blok:"
     + "<div class='row'><img class='tutorial tutorial_img_txt tutorial_img' src='./DwenguinoIDE/img/tutorials/drawingrobot/block_for.png'></div>"
     + "<div class='tutorial tutorial_img_txt'><i>tellen met i van 0 tot 10 in stappen van 1</i></div>"
-    + "Dit zullen we de <b>tel</b> lus noemen.<br>"
-    + "Bij deze lus moet je beginnen met een aantal zaken in te stellen:"
-    + "<ul>"
-    +     "<li>een variabele: dit is standaard de letter <b>i</b>, maar kan aangepast worden naar een zelfgekozen woord of letter. "
-    + "Deze variabele kan tijdens de uitvoering van de lus gebruikt worden om bij te houden hoe vaak de lus al is uitgevoerd.</li>"
-    +     "<li>Beginwaarde voor de variabele: Dit is standaard 0 en zal meestal op 0 blijven staan. Dit kan indien nodig ook veranderd worden naar een ander getal of naar een variabele die een getal bevat.</li>"
-    +     "<li>Eindwaarde voor de variabele: Nadat de code in de lus is uitgevoerd wordt er gecontroleerd of de variabele gelijk is aan dit getal. Zoja, dan zal de lus stoppen met herhalen en zal de code die achter de lus staat verder lopen. Zonee, dan wordt de waarde van de variabele verhoogd en wordt de lus weer uitgevoerd. "
-    + "Standaard staat deze op 10. Dit kan echter ook veranderd worden naar de nodige waarde.</li>"
-    +     "<li>in stappen van: De variabele zal na elke uitvoering van de lus opgeteld worden met deze waarde. Standaard staat dit op 1, en dit zal meestal zo blijven. Dit kan echter ook veranderd worden naar andere waarden zoals een negatieve waarde om af te tellen in plaats van op te tellen.</li>"
-    + "</ul>"
-    + "<br>Plaats dit blok in <n>Zet klaar</b> en vul de waarden als volgt in:"
-    + "<ul>"
-    +     "<li>een variabele: <b>i</b></li>"
-    +     "<li>Beginwaarde voor de variabele: <b>0</b></li>"
-    +     "<li>Eindwaarde voor de variabele: <b>4</b></li>"
-    +     "<li>in stappen van: <b>1</b></li>"
+    + "Dit zullen we de <b>tel</b> lus noemen.<br><br>"
+    + "Deze soort lus wordt meestal gebruikt als je op voorhand weet hoe vaal de lus zal moeten lopen.<br><br>"
+    + "Bij deze lus moet je beginnen met een aantal zaken in te stellen. We zullen dit nu stap voor stap overlopen.<br>"
+    + "Begin met deze lus in <b>Zet klaar</b> te plaatsen",
+  "<div class=\"tutorial_error_message\"></div>"
+    + "Het eerste dat we moeten instellen is de <b>variabele</b>. Deze staat standaard ingesteld op <b>i</b>.<br><br>"
+    + "Deze variabele zal een getal bevatten. Hoe de veriabele wordt ingevuld zal in de volgende stappen uitgelegd worden.<br>"
+    + "Maar wat je wel al kan weten is dat deze variabele in het <b>Voer uit</b> deel kan gebruikt worden om bij te houden hoeveel keer de lus al heeft gelopen.<br><br>"
+    + "Laat deze variabele staan op <b>i</b>",
+  "<div class=\"tutorial_error_message\"></div>"
+    + "De tweede instelling is de <b>beginwaarde</b> van de variabele. Dit staat standaard ingestel op 0 en zal meestal op 0 of 1 ingesteld worden.<br>"
+    + "Dit is dus de waarde die de variabele krijgt bij de start van het uitvoeren van de lus.<br><br>"
+    + "Stel deze in op <b>1</b>",
+  "<div class=\"tutorial_error_message\"></div>"
+    + "De derde instelling is de eindwaarde van de variabele. Deze staat standaard op 10.<br>"
+    + "Als de variabele groter dan dit getal wordt, zal de lus stoppen met lopen. Je kan de lus momenteel dus lezen als: zolang de variabele kleiner of gelijk is aan de eindwaarde, zal de lus blijven lopen.<br><br>"
+    + "Stel de eindwaarde in op <b>5</b>",
+  "<div class=\"tutorial_error_message\"></div>"
+    + "De laatste instelling is het getal dat na elke uitvoering van de lus opgeteld word bij de variabele. Dit staat standaard op 1 en wordt meestal zo gehouden. Dit kan echter ook veranderd worden en kan zekfs negatieve getallen bevatten om af te tellen in plaats van op te tellen.<br>"
+    + "Stel deze waarde in op <b>1</b>",
+  "De lus zelf staat nu ingesteld en kan als volgt gelezen worden: stel <b>i</b> in op <b>1</b>. Nadat de lus is uitgevoerd tel je <b>1</b> op bij de variabele. Blijf deze lus uitvoeren tot en met <b>i</b> gelijk is aan <b>5</b>."
+    + "<ul>"  
+    +   "<li>Bij de eerste uitvoering van de lus zal <b>i</b> gelijk zijn aan <b>1</b></li>"
+    +   "<li>Bij de tweede uitvoering van de lus zal <b>i</b> gelijk zijn aan <b>2</b></li>"
+    +   "<li>...</li>"
+    +   "<li>Bij de vijfde uitvoering van de lus zal <b>i</b> gelijk zijn aan <b>5</b></li>"
+    +   "<li>Nu wordt <b>i</b> gelijk aan <b>6</b> en zal de lus stoppen</li>"
     + "</ul>",
   "<div class=\"tutorial_error_message\"></div>"
     + "Plaats volgende zaken in het <b>voer uit</b> blok:"
@@ -1125,7 +1234,8 @@ MSG.tutorials.drawingrobot['part6_1'].stepContents = [
   "De Tweede soort lus die we gaan bekijken is een oneindige lus. Deze zal lopen zolang de code loopt en zal pas stoppen bij het stoppen van de code.",
   "Om een oneindige lus te gebruiken heb je geen extra blok nodig. De code die in <b>Herhaal</b> staat zal oneindig lang uitgevoerd worden. "
     + "Dit is ook het verschil tussen <b>Zet klaar</b> en <b>Herhaal</b>. De code die in <b>Zet klaar</b> staat wordt 1 keer uitgevoerd, nadien wordt de code in het <b>Herhaal</b> blok continu uitgevoerd tot het programma gestopt wordt.",
-  "Plaats het blok <b>Teken een rechthoek</b> in <b>Herhaal</b>, plaats het blok <b>Teken een cirkel</b> in <b>Zet klaar</b> en laat het programma lopen.<br>Zolas je zal kan zien, zal de cirkel eenmaal getekend worden en blijft het programma de rechthoek tekenen tot je de code laat stoppen.",
+  "<div class=\"tutorial_error_message\"></div>"
+    + "Plaats het blok <b>Teken een rechthoek</b> in <b>Herhaal</b>, plaats het blok <b>Teken een cirkel</b> in <b>Zet klaar</b> en laat het programma lopen.<br>Zoals je zal kan zien, zal de cirkel eenmaal getekend worden en blijft het programma de rechthoek tekenen tot je de code laat stoppen.",
   "De derde soort lus is gelijkaardig aan de herhaal lus, maar zal nu ofwel blijven lopen zolang er aan een voorwaarde wordt voldaan of zal stoppen vanaf er aan een voorwaarde wordt voldaan. "
     + "De 2 vormen van deze lus noemen de <b>zolang</b> lus en de <b>totdat</b> lus.<br>"
     + "Deze lus wordt meestal gebruikt als we op voorhand niet weten hoe vaak de lus precies zal moeten lopen.",
@@ -1199,7 +1309,36 @@ MSG.tutorials.drawingrobot['part6_1'].stepContents = [
     +     "<li><b>zolang</b> aanpassen naar <b>totdat</b></li>"
     + "</ul>",
 ];
-
+MSG.tutorials.drawingrobot['part6_1'].hints = [
+  "<li>Er is nog geen <b>tel</b> blok</li>",
+  "<li>De variabele in het <b>tel</b> blok heeft een vekreerde naam</li>",
+  "<li>De startwaarde in het <b>tel</b> blok is verkeerd</li>",
+  "<li>De eindwaarde in het <b>tel</b> blok is verkeerd</li>",
+  "<li>De stap in het <b>tel</b> blok is verkeerd</li>",
+  "<li>Er zijn niet genoeg <b>Verplaats de stift ... met ... stappen</b> blokken</li>", //5
+  "<li>Een <b>Verplaats de stift ... met ... stappen</b> blok zit niet in de lus</li>",
+  "<li>Een <b>Verplaats de stift ... met ... stappen</b> blok heeft een verkeerde richting</li>",
+  "<li>Een <b>Verplaats de stift ... met ... stappen</b> blok heeft een verkeerd getal</li>",
+  "<li>Er is geen <b>Teken een rechthoek</b> blok</li>", // 9
+  "<li>Er is geen <b>Teken een cirkel</b> blok</li>",
+  "<li>De naam van een variabele is verkeerd</li>", // 11
+  "<li>De waarde van een variabele is verkeerd</li>",
+  "<li>Er is nog geen <b>herhalen zolang</b> blok</li>",
+  "<li>Het <b>Teken een lijn naar x: ... en y: ...</b> blok is niet ingevuld met de variabelen x en y</li>", // 14
+  "<li>Een variabele wordt nog niet aangepast</li>",
+  "<li>Een variabele heeft niet de juiste naam</li>",
+  "<li>Er is nog geen <b>...+...</b> blok</li>",
+  "<li>Een <b>...+...</b> blok bevat een foute variabele</li>",
+  "<li>Het getal in het <b>...+...</b> blok moet groter zijn</li>",
+  "<li>Er is nog geen <b>...EN...</b> blok</li>", // 20
+  "<li>Er ontbreekt een <b>...<...</b> blok</li>", // 21
+  "<li>Een <b>...<...</b> blok staat op de verkeerde plaats</li>",
+  "<li>Een <b>...<...</b> blok heeft een verkeerd teken (=,>,...) </li>",
+  "<li>Het eerste <b>...<...</b> blok heeft nog lege velden</li>", // 24
+  "<li>Het eerste <b>...<...</b> blok heeft foute waarden</li>",
+  "<li>Het tweede <b>...<...</b> blok heeft nog lege velden</li>", // 26
+  "<li>Het tweede <b>...<...</b> blok heeft foute waarden</li>",
+];
 // -------
 
 MSG.tutorials.drawingrobot['part6_2'] = {};
@@ -1212,7 +1351,7 @@ MSG.tutorials.drawingrobot['part6_2'].stepTitles = [
 MSG.tutorials.drawingrobot['part6_2'].stepContents = [
   "In deze oefening gaan we een trap tekenen zoals in het voorbeeld. Er zullen echter een aantal zaken anders zijn:"
     + "<ul>"
-    + "<li>Begin met naar punt <b>x:110, y:200</b> te gaan. Vergeet niet eerst de stift op te heffen en nadien weer neer te zetten.</li>"
+    + "<li>Begin met naar punt <b>x:100, y:200</b> te gaan. (Vergeet niet eerst de stift op te heffen en nadien weer neer te zetten.)</li>"
     + "<li>De eerste 5 treden gaan omhoog en naar <b>rechts</b></li>"
     + "<li>De volgende 5 treden gaan omhoog en naar <b>links</b>.</li>"
     + "<li>De afstand omhoog en naar links/rechts is elke keer 10 stappen.</li>"
@@ -1228,7 +1367,15 @@ MSG.tutorials.drawingrobot['part6_2'].stepContents = [
     + "</ul>",
   "Goed zo, ga nu naar de volgende oefening."
 ];
-
+MSG.tutorials.drawingrobot['part6_2'].hints = [
+  "<li>Je moet beginnen met naar punt (110,200) te gaan en deze lijn niet te tekenen</li>",
+  "<li>Gebruik te veel of niet genoeg lussen</li><li>Een <b>tel</b> lus gebruiken zal gemakkelijker zijn dan een <b>herhalen zolang/totdat</b> lus</li>",
+  "<li>Er is een fout bij een van de waarden in de for loop ('van', 'dan' of 'in stappen van')</li>",
+  "<li>Er zijn te weinig <b>Verplaats de stift ... met ... stappen</b> blokken</li>",
+  "<li>Eeb <b>Verplaats de stift ... met ... stappen</b> blok heeft een verkeerde waarde voor het aantal stappen</li>",
+  "<li>Een <b>Verplaats de stift ... met ... stappen</b> blok heeft een verkeerde richting</li>",
+  "<li>Gebruik een <b>als ... dan ... anders ...</b> blok</li><li>De variabele <b>i</b>(of andere variabele indien de naam veranderd is) uit de <b>tel</b> lus kan gebruikt worden in het <b>voer uit </b>deel.</li>",
+];
 // -------
 
 MSG.tutorials.drawingrobot['part6_3'] = {};
@@ -1269,51 +1416,206 @@ MSG.tutorials.drawingrobot['part6_3'].stepContents = [
     +   "<li>Je kan het oplossen met 1 lus (elke lus tekent een volledige boom)</li>"
     +   "<li>Of met 2 lussen (lus 1 tekent alle stammen, lus 2 tekent alle bladeren)</li>"
     + "</ul>",
-  "Nu je de bomen hebt gemaakt, kunnen we al de zaken die we in de vorige oefeningen hebben gedaan samenbrengen om 1 groot programma te maken dat een grote tekening zal maken.<br>"
-    + "Deze tekening bestaat uit hetvolgende:"
+  "Proficiat. In de volgende delen gaan we de volledige tekening maken. Maar hiervoor gaan we juist nog functies zien.",
+  "Klik eerst op deze knop om de huidige oefening te downloaden.<br>In de volgende delen zal je de code dan kunnen hergebruiken zonder dat je alles opnieuw moet programmeren.",
+  
+  
+];
+MSG.tutorials.drawingrobot['part6_3'].hints = [
+  "<li>Dit is een hint</li>",
+];
+
+// ----- part 7 -----
+MSG.tutorials.drawingrobot['part7_1'] = {};
+MSG.tutorials.drawingrobot['part7_1'].label = 'Deel 7: Uitleg';
+MSG.tutorials.drawingrobot['part7_1'].stepTitles = [
+  "Functies",
+  "Voorbeeld 1",
+  "Voorbeeld 1",
+  "Voorbeeld 1",
+  "Voorbeeld 1",
+  "Voorbeeld 1",
+  "Voorbeeld 1",
+  "Voorbeeld 1",
+  "Voorbeeld 1",
+  "Correct",
+  "Functies",
+  "Voorbeeld 2",
+  "Voorbeeld 2",
+  "Voorbeeld 2",
+  "Voorbeeld 2",
+  "Voorbeeld 2",
+  "Voorbeeld 2",
+  "Voorbeeld 2",
+  "Voorbeeld 2",
+  "Voorbeeld 2",
+  "Correct",
+  "Functies"
+
+];
+MSG.tutorials.drawingrobot['part7_1'].stepContents = [
+  "Het laatste deel dat zal uitgelegd worden gaat over functies.<br>Een functie is een blok code die een naam krijgt en een bepaalde taak uitvoert. "
+    + "Via deze naam kan je dan een stukje code hergebruiken voor deze taak.<br>"
+    + "Als je een bepaalde taak nu meerdere malen moet herhalen, kan je de functie oproepen in plaats van elke keer al de code te schrijven. "
+    + "Net zoals lussen zal dit ervoor zorgen dat de code korter wordt en dat het programma leesbaarder wordt.<br><br>"
+    + "In de volgende stappen zal je een voorbeeldje zien van hoe zo een functie kan gebruikt worden en hoe je die maakt.",
+  "Stel dat het blok om een vierkant te tekenen niet bestond en je zou 4 vierkanten willen tekenen die tegen elkaar liggen, dan zou je dat kunnen doen zoals in dit voorbeeld.<br><br>"
+    + "In deze code zie je ook een nieuw soort blok:"
+    + "<div class='row'><img class='tutorial tutorial_img_txt tutorial_img' src='./DwenguinoIDE/img/tutorials/drawingrobot/block_comment.png'></div>"
+    + "<div class='tutorial tutorial_img_txt'><i>// ...</i></div>"
+    + "Dit blok kan je vinden in <b>Comentaar</b> en via dit blok kan je commentaar toevoegen aan de code.<br>"
+    + "Commentaar wordt gebruikt om uit te leggen wat de code doet en om de code leesbaarder te maken.<br>"
+    + "Hier hebben we de commentaar gebruikt om aan te tonen welke blokken dienen om het vierkant te tekenen en welke om de stift te verplaatsen na het tekenen.<br><br>"
+    + "Zoals je kan zien hergebruiken we dezelfde aantal blokken continu en is dit niet zo gemakkelijk leesbaar. Zeker zonder de commentaar blokken.<br>",
+  "Deze code kan niet gemakkelijk verbeterd worden via lussen aangezien de stap tussen de blokken elke keer verschillend is. "
+    + "Wat we wel kunnen doen is de code voor een vierkant in een functie steken en dan telkens de functie oproepen.",    
+  "<div class=\"tutorial_error_message\"></div>"
+    + "We zullen nu dus een functie maken voor een vierkant te tekenen.<br><br>"
+    + "Begin met deze balk te verslepen naar het midden. Hierdoor zal het er zo uitzien:"
+    + "<div class='row'><img class='tutorial tutorial_img_txt tutorial_img' src='./DwenguinoIDE/img/tutorials/drawingrobot/level.png'></div>"
+    + "Dit zal ervoor zorgen dat je langs de linkerkant een extra optie krijgt genaamd <b>Functies</b>.",
+  "<div class=\"tutorial_error_message\"></div>"
+    + "In <b>Functies</b> vind je het blok"
+    + "<div class='row'><img class='tutorial tutorial_img_txt tutorial_img' src='./DwenguinoIDE/img/tutorials/drawingrobot/block_function.png'></div>"
+    + "<div class='tutorial tutorial_img_txt'><i>Functie: om ...</i></div>"
+    + "Sleep dit naar het scherm. Je zal dit nergens kunnen inklikken, dit blok zal altijd apart staan.",
+  "<div class=\"tutorial_error_message\"></div>"
+    + "Klik op <b>Doe iets</b> en verander dit naar <b>Teken rechthoek</b><br><br>"
+    + "Dit is de naam van de functie en zullen we later gebruiken om naar deze functie te verwijzen.",
+  "<div class=\"tutorial_error_message\"></div>"
+    + "Sleep nu de volgende 4 blokken in deze volgorde naar de functie. (deze blokken tekenen een vierkant)"
+    + "<ul>"
+    +   "<li>Verplaats de stift naar <b>rechts</b> met <b>20</b> stappen</li>"
+    +   "<li>Verplaats de stift naar <b>omlaag</b> met <b>20</b> stappen</li>"
+    +   "<li>Verplaats de stift naar <b>links</b> met <b>20</b> stappen</li>"
+    +   "<li>Verplaats de stift naar <b>omhoog</b> met <b>20</b> stappen</li>"
+    + "</ul>",
+  "<div class=\"tutorial_error_message\"></div>"
+    + "Verwijder in <b>Zet klaar</b> al de blokken om vierkanten te tekenen.<br>"
+    + "Dit zijn dus de 4 blokken onder <b>// vierkant tekenen</b> die je 4 keer moet verwijderen. (De commentaar blokken laat je staan).<br><br>"
+    + "In <b>Zet klaar</b> heb je op het einde dus nog 3 blokken over die gebruikt worden om de stift te verplaatsen naar de volgende locaties. (De commentaar blokken tellen we niet mee)",
+  "<div class=\"tutorial_error_message\"></div>"
+    + "In <b>Functies</b> vind je het blok"
+    + "<div class='row'><img class='tutorial tutorial_img_txt tutorial_img' src='./DwenguinoIDE/img/tutorials/drawingrobot/block_function_implemented.png'></div>"
+    + "<div class='tutorial tutorial_img_txt'><i>Teken rechthoek</i></div>"
+    + "Sleep dit blok 4 keer naar <b>Zet klaar</b> en plaats het elke keer onder het volgende <b>// vierkant tekenen</b> blok.",
+  "Goed zo, als je de code nu uittest, zou dit exact hetzelfde resultaat moeten geven als in het begin. Maar nu is de code veel korter en leesbaarder.",
+  "Aan sommige functies kan je waarden meegeven en sommige functies kunnen ook een waarde terugsturen. Dit zullen we uittesten in de volgende oefening.",
+  "In deze oefening zullen we een functie maken die 2 getallen meekrijgt. Dit zijn de punten die een leerling heeft gekrgen op een toets."
+    + "Het probleem is dat de punten niet altijd op 10 of 100 staan en ze dus moeten omgezet worden zodat we de punten in procenten weten.<br>"
+    + "We zullen deze functie dan uittesten door het resultaat op het scherm van de robot te tonen.",
+  "<div class=\"tutorial_error_message\"></div>"
+    + "In <b>Functies</b> vind je het blok"
+    + "<div class='row'><img class='tutorial tutorial_img_txt tutorial_img' src='./DwenguinoIDE/img/tutorials/drawingrobot/block_function_return.png'></div>"
+    + "<div class='tutorial tutorial_img_txt'><i>om ... uitvoeren ...</i></div>"
+    + "Sleep dit naar het scherm en verander de naam naar <b>procent berekenen</b>",
+  "<div class=\"tutorial_error_message\"></div>"
+    + "Klik op het tandwiel icoontje zodat je het volgende scherm krijgt"
+    + "<div class='row'><img class='tutorial tutorial_img_txt tutorial_img' src='./DwenguinoIDE/img/tutorials/drawingrobot/block_function_options.png'></div>"
+    + "Sleep het <b>invoernaam: x</b> blok 2 maal van het linkerscherm naar het rechterscherm, onder <b>ingangen</b> en geef ze de namen <b>x</b> en <b>y</b>.<br>"
+    + "Hierna zou je zoiets moeten krijgen:"
+    + "<div class='row'><img class='tutorial tutorial_img_txt tutorial_img' src='./DwenguinoIDE/img/tutorials/drawingrobot/block_function_options2.png'></div>"
+    + "klik nadien weer op het tandwiel icoontje om dit nieuwe scherm weer weg te doen.",
+  "Deze functie zal nu 2 waarden meekrijgen als je ze oproept. Deze waarden worden dan bijgehouden in de variabelen x en y.<br><br>"
+    + "Hier is x = de behaalde punten<br>"
+    + "en y = op hoeveel de punten stonden",
+  "<div class=\"tutorial_error_message\"></div>"
+    + "In deze functie zullen we de berekening maken.:"
+    + "<ul>"
+    + "<li>Voeg het blok <b>Stel item in op getal</b> (<b>Variabelen</b>) toe aan de functie</li>"
+    + "<li>Maak zelf de berekening voor de omzetting naar procenten</li>"
+    + "</ul>",
+  "Nu hebben we in de variabele <b>item</b> de punten in procenten. We gaan dit als antwoord terugsturen, maar we zullen dit getal eerst veranderen naar een tekst.",
+  "<div class=\"tutorial_error_message\"></div>"
+    + "In <b>Tekst</b> vind je het blok"
+    + "<div class='row'><img class='tutorial tutorial_img_txt tutorial_img' src='./DwenguinoIDE/img/tutorials/drawingrobot/block_text_create.png'></div>"
+    + "<div class='tutorial tutorial_img_txt'><i>Maak tekst met ... ...</i></div>"
+    + "Sleep dit naar <b>uitvoeren</b>",
+  "<div class=\"tutorial_error_message\"></div>"
+    + "Sleep de <b>Variabale</b> die je hebt ingesteld (standaard <b>item</b>, tenzij je dit hebt aangepast) naar de eerste vrije plaats in het blok <b>Maak tekst met ...</b><br><br>"
+    + "In <b>Tekst</b> vind je het blok"
+    + "<div class='row'><img class='tutorial tutorial_img_txt tutorial_img' src='./DwenguinoIDE/img/tutorials/drawingrobot/block_text.png'></div>"
+    + "<div class='tutorial tutorial_img_txt'><i>\"...\"</i></div>"
+    + "Sleep dit naar de tweede vrije plaats in het blok <b>Maak tekst met ...</b> en vul dit in met <b>%</b>",
+  "<div class=\"tutorial_error_message\"></div>"
+    + "We zullen dit nu uittesten. Voeg het volgende blok toe in <b>Zet klaar</b> (te vinden in <b>Dwenguino</b>)"
+    + "<div class='row'><img class='tutorial tutorial_img_txt tutorial_img' src='./DwenguinoIDE/img/tutorials/drawingrobot/block_lcd.png'></div>"
+    + "<div class='tutorial tutorial_img_txt'><i>lcd-scherm</i></div>"
+    + "Dit blok zal een tekst tonen op het schermpje van de robot die je kan zien aan de rechterkant.<br><br>"
+    + "In <b>Functies</b> vind je het blok <b>procent berekenen met: x, y</b>. Sleep dit naar <b>Schrijf tekst</b>.<br><br>"
+    + "Als laatste vul je in <b>x</b> en <b>y</b> het punt in (vb: 15/20 -> x: 15 en y:20)",
+  "Als je dit uittest zal je op het scherm de waarde in procent moeten zien. In theorie zou je nu deze functie kunnen hergebruiken elke keer je een breuk moet omzetten naar een procent.",
+  "Als laatste kunnen we functies ook gebruiken om ons te helpen bij het programmeren van een zeer groot programma of zeer grote tekening.<br>"
+    + "Hierbij kan je dan beginnen met het eerste deel te programmeren (bijvoorbeeld het tekenen van een huis). Eenmaal dat dit af is kan je dit in een functie steken. "
+    + "Hierna kan je dan het volgende deel programmeren (bijvoorbeeld de trap), zonder dat al de code van het vorige deel er nog staat.<br><br>"
+    + "Zo kan je een groot programma stukje per stukje programmeren om dan nadien al de functies in de juiste volgorde achter elkaar op te roepen.<br><br>"
+    + "Hier gaan we geen voorbeeld van maken, maar dit zal je in de volgende oefening kunnen gebruiken om het je gemakkelijker te maken."
+];
+MSG.tutorials.drawingrobot['part7_1'].hints = [
+  "<li>Dit is een hint</li>",
+];
+// -------
+
+MSG.tutorials.drawingrobot['part7_2'] = {};
+MSG.tutorials.drawingrobot['part7_2'].label = 'Deel 7: Oefening';
+MSG.tutorials.drawingrobot['part7_2'].stepTitles = [
+  "Laatste oefening",
+  "Code inladen",
+  "Code in functie",
+  "Info",
+  "Huis tekenen",
+  "Trap tekenen",
+  "Bomen tekenen",
+  "Extra tekening",
+  "Einde",
+  "Einde"
+];
+MSG.tutorials.drawingrobot['part7_2'].stepContents = [
+  "Dit is de allerlaatste oefening. Hier gaan we alles gebruiken dat we in de vorige oefeningen gedaan hebben.<br><br>"
+    + "Het doel van de oefening is om 1 grote tekening te tekenen die uit de volgende delen bestaat:"
     + "<ul>"
     +   "<li>Een huis</li>"
     +   "<li>Een trap</li>"
     +   "<li>Bomen</li>"
-    +   "<li>Een zon</li>"
-    +   "<li>Elk deel mag in een ander kleur (via het <b>kleur</b> blok)</li>"
-    + "</ul>",
-    + "In de volgende stappen wordt meer uitleg gegeven over elk deel.",
+    +   "<li>Een zon of iets anders naar keuze</li>"
+    + "</ul>"
+    + "Je mag ook met de kleuren spelen zoveel je zelf wil.",
+  "Op het einde van de oefeningen in deel 6 (oefening met de 3 bomen) heb je normaal gezien jouw afgewerkte oefening opgeslagen. <br>"
+    + "Als je dit hebt gedaan en deze oefening nog hebt staan, dan klik je op de bovenstaant knop (de knop met de pijl naar boven) en selecteer je het opgeslagen bestand.<br><br>"
+    + "Indien je die oefening niet hebt gedownload of je andere problemen hebt kan je op de volgende knop klikken:<br>"
+    + "<button id=\"btn_exercise7\" type=\"button\">Bomen inladen</button<br><br>",
+  "Nu kan je dus al het deel met de bomen tekenen.<br>"
+    + "Begin eerst met al de code die je momenteel hebt staan te verplaatsen naar een nieuwe functie.<br>"
+    + "Test nu uit of de tekening nog steeds correct is als je in <b>zet klaar</b> de functie oproept.<br><br>"
+    + "Als dit in orde is ga je door naar de volgende stap.",
+  "Al de volgende stappen bevatten info over elk deel van tekening. Het is aangeraden om dit stap voor stap te programmeren en als de stap correct werkt, dit in een nieuwe functie te steken.<br>"
+    + "Zo zal je op het einde een viertal functies hebben (huis, trap, bomen en extra), die je dan allemaal achter elkaar kan oproepen om heel de tekening te tekenen.<br><br>"
+    + "Je mag ook met de kleuren spelen zoveel je zelf wil.",
   "Het huis heeft:"
     + "<ul>"
-    +   "<li>2 verdiepen (gelijkvloers en verdieping 1)</li>"
-    +   "<li>een driehoekig dak (extra zolderverdieping)</li>"
-    +   "<li>Een trap die van gelijkvoers naar verdieping 1 gaat, dan omdraaid en dan van verdieping 1 naar de zolder gaat.</li>"
-    +   "<li>Deze trap heb je in een vorige oefening al eens gemaakt en gebruikt maar 1 <b>tel</b> lus.</li>"
+    +   "<li>minstens 2 verdiepen (gelijkvloers + verdieping 1 + eventuele extra verdiepingen)</li>"
+    +   "<li>een driehoekig dak (zolderverdieping)</li>"
+    +   "<li>Je mag zelf nog andere zaken toevoegen als je wil</li>"
     + "</ul>",
-  "De bomen heb je al getekend, zorg ervoor dat deze naast het huis staan.",
-  "Voor de zon doe je volgende zaken:"
+  "De trap:"
     + "<ul>"
-    +   "<li>Ga naar een vrije locatie op het blad (stift niet vergeten opheffen en neerzetten)</li>"
-    +   "<li>Teken een cirkel</li>"
-    +   "<li>Teken minstens 4 zonnestralen op de zon</li>"
-    +   "<li>1 zonnestraal tekenen: Ga naar een punt op de cirkel en teken dan een rechte lijn in een richting of naar een punt)</li>"
-    +   "<li>De zonnestralen mogen allemaal apart getekend worden of via een <b>tel</b> lus, dit mag je zelf kiezen.</li>"
+    +   "<li>De trap gaat van gelijkvloers naar de 1e verdieping</li>"
+    +   "<li>De trap draait dan om en gaat naar de volgende verdieping (1e verdieping naar zolder of eventuele 2e verdieping)</li>"
+    +   "<li>Als je meerdere verdiepingen hebt mag je kiezen of de trap blijft doorgaan tot de zolder of enkel tot de 2e verdieping.</li>"
     + "</ul>",
-  "Proficiat. Jouw tekening is nu volledig afgewerkt."
+  "De bomen:<br>"
+    + "Deze worden al getekend, maar als je wil mag je deze wel nog aanpassen.",
+  "Extra toevoeging(en):<br>"
+    + "Je mag zelf kiezen wat je nog toevoegt als extra tekening. In het voorbeeld hebben we een zon getekend, maar je mag hier zo creatief zijn als je zelf wil en iets anders tekenen (vb: een hekken, een tuin, een familie, ...). Je mag ook gerust nog meerdere tekeningen toevoegen.<br>",
+  "Als je nu op de knop <b>Volgende</b> klikt is de oefening gedaan. Als je jouw tekening nog wil opslaan is dit het moment.",
+  "Proficiat. Je hebt de lessen en oefeningen volledig afgewerkt.<br>"
+    + "Ik hoop dat je wat hebt bijgeleerd over programmeren en dat je het interessant en leuk vond.<br>"
+    + "Nog veel succes met je andere lessen en examens."
 ];
-
-
-// ----- part 7 -----
-MSG.tutorials.drawingrobot['part7_1'] = {};
-MSG.tutorials.drawingrobot['part7_1'].label = 'Deel 7: extra oefening 1';
-MSG.tutorials.drawingrobot['part7_1'].stepTitles = [
-  "Debuggen",
-  "Hints",
+MSG.tutorials.drawingrobot['part7_2'].hints = [
+  "<li>Dit is een hint</li>",
 ];
-MSG.tutorials.drawingrobot['part7_1'].stepContents = [
-  "In dit deel maken we nog een oefening op debuggen",
-  "De opdracht was om een pyramide te tekenen. Er zitten echter nog fouten in."
-];
-
-// -------
-
-
+// ---------- Einde tutorials ----------
 
 MSG.logging = {
   setup: "Instellingen",

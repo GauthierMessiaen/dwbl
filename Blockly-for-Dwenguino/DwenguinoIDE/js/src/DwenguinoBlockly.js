@@ -4,8 +4,8 @@ if (!window.dwenguinoBlocklyServer) {
   dwenguinoBlocklyServer = false;
 };
 
-// window.serverUrl = 'http://localhost:12032';
-window.serverUrl = 'https://dwbl.herokuapp.com';
+window.serverUrl = 'http://localhost:12032';
+// window.serverUrl = 'https://dwbl.herokuapp.com';
 
 var DwenguinoBlockly = {
     simButtonStateClicked: false,
@@ -216,17 +216,17 @@ var DwenguinoBlockly = {
            console.log("blockly event");
            if (event.type == "create"){
              var data = {
+               blocktype: event.xml.getAttribute("type"),
                xml: event.xml,
                ids: event.ids,
-               blocktype: event.xml.getAttribute("type"),
              }
              data = JSON.stringify(data);
              DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("blocklyBlockCreate", data));
            } else if (event.type == "delete"){
              var data = {
+               blocktype: event.oldXml.getAttribute("type"),
                oldXml: event.oldXml,
                ids: event.ids,
-               blocktype: event.oldXml.getAttribute("type"),
              }
              data = JSON.stringify(data);
              DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("blocklyBlockDelete", data));
@@ -445,7 +445,7 @@ var DwenguinoBlockly = {
         var text = Blockly.Xml.domToText(xml);
         if (text != DwenguinoBlockly.prevWorkspaceXml){
             DwenguinoBlockly.prevWorkspaceXml = text;
-            DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("changedWorkspace", text));
+            // DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("changedWorkspace", text));
         }
     },
 

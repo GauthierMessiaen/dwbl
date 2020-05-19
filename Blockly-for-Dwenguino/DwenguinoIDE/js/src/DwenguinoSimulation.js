@@ -588,36 +588,59 @@ var DwenguinoSimulation = {
       return;
     }
 
-    var line = DwenguinoSimulation.debugger.debuggerjs.machine.getCurrentLoc().start.line - 1;
-    DwenguinoSimulation.debugger.debuggerjs.machine.step();
-
-    // highlight the current block
-    DwenguinoSimulation.updateBlocklyColour();
-    DwenguinoSimulation.handleScope();
-
-    // Get current line
-    var code = DwenguinoSimulation.debugger.code.split("\n")[line] === undefined ? '' : DwenguinoSimulation.debugger.code.split("\n")[line];
-
-
-    if(DwenguinoSimulation.scenarioView === "drawingrobot"){
-      DwenguinoSimulation.drawingrobotStep();
-    }
-
-    // Update the scenario View
-    DwenguinoSimulation.board = DwenguinoSimulation.currentScenario.updateScenario(DwenguinoSimulation.board);
-
-    // check if current line is not a sleep
-    if (!code.trim().startsWith("DwenguinoSimulation.sleep")) {
-      setTimeout(DwenguinoSimulation.step, DwenguinoSimulation.speedDelay);
-    } else {
-      // sleep
-      var delayTime = Number(DwenguinoSimulation.debugger.code.split("\n")[line].replace(/\D+/g, ''));
+    // check if there is a sleep in the sleepqueue
+    var sleep = DwenguinoSimulation.sleepQueue.shift();
+    if( sleep !== undefined && sleep != 0 ){
+      var delayTime = sleep;
       DwenguinoSimulation.delayStepsTaken = 0;
       DwenguinoSimulation.delayStepsToTake = Math.floor(delayTime/DwenguinoSimulation.baseSpeedDelay);
       DwenguinoSimulation.delayRemainingAfterSteps = delayTime % DwenguinoSimulation.baseSpeedDelay;
-      DwenguinoSimulation.performDelayLoop(DwenguinoSimulation.step);
+      DwenguinoSimulation.performDelayLoop(DwenguinoSimulation.step); 
+
+    } else { // else: normal step
+      var line = DwenguinoSimulation.debugger.debuggerjs.machine.getCurrentLoc().start.line - 1;
+      DwenguinoSimulation.debugger.debuggerjs.machine.step();
+
+      // highlight the current block
+      DwenguinoSimulation.updateBlocklyColour();
+      DwenguinoSimulation.handleScope();
+
+      // Get current line
+      var code = DwenguinoSimulation.debugger.code.split("\n")[line] === undefined ? '' : DwenguinoSimulation.debugger.code.split("\n")[line];
+
+      if(DwenguinoSimulation.scenarioView === "drawingrobot"){
+        DwenguinoSimulation.drawingrobotStep();
+      }
+
+      // Update the scenario View
+      DwenguinoSimulation.board = DwenguinoSimulation.currentScenario.updateScenario(DwenguinoSimulation.board);
+
+      // check if current line is not a sleep
+      if (!code.trim().startsWith("DwenguinoSimulation.sleep")) {
+          setTimeout(DwenguinoSimulation.step, DwenguinoSimulation.speedDelay);
+      } else {
+
+      // check if we use the sleep with the drawingrobot
+      if(DwenguinoSimulation.scenarioView === "drawingrobot"){
+        // create a queue and place the delay on the correct location in the queue.
+        var l1 = DwenguinoSimulation.sleepQueue.length;
+        for(var i = 0; i < DwenguinoSimulation.stepmotorQueue.length - l1; i++){
+          DwenguinoSimulation.sleepQueue.push(0);
+        }
+        var delayTime = Number(DwenguinoSimulation.debugger.code.split("\n")[line].replace(/\D+/g, ''));
+        DwenguinoSimulation.sleepQueue.push(delayTime);
+        setTimeout(DwenguinoSimulation.step, DwenguinoSimulation.speedDelay);
+      
+        } else {
+          var delayTime = Number(DwenguinoSimulation.debugger.code.split("\n")[line].replace(/\D+/g, ''));
+          DwenguinoSimulation.delayStepsTaken = 0;
+          DwenguinoSimulation.delayStepsToTake = Math.floor(delayTime/DwenguinoSimulation.baseSpeedDelay);
+          DwenguinoSimulation.delayRemainingAfterSteps = delayTime % DwenguinoSimulation.baseSpeedDelay;
+          DwenguinoSimulation.performDelayLoop(DwenguinoSimulation.step);  
+        }
+      }
+      DwenguinoSimulation.checkForEnd();
     }
-    DwenguinoSimulation.checkForEnd();
   },
   /*
    *  This function iterates until the delay has passed
@@ -627,6 +650,7 @@ var DwenguinoSimulation = {
     // To do so we execute the updateScenario() function of the current scenario delay/speedDelay times
     // with an interval of speedDelay.
     if (DwenguinoSimulation.delayStepsTaken < DwenguinoSimulation.delayStepsToTake){
+      console.log("delay");
       // Update the scenario View
       DwenguinoSimulation.board = DwenguinoSimulation.currentScenario.updateScenario(DwenguinoSimulation.board);
       DwenguinoSimulation.delayStepsTaken++;
@@ -634,6 +658,7 @@ var DwenguinoSimulation = {
         DwenguinoSimulation.performDelayLoop(returnCallback);
       }, DwenguinoSimulation.speedDelay);
     } else {
+      console.log("end delay");
       setTimeout(returnCallback, DwenguinoSimulation.delayRemainingAfterSteps);
     }
   },
@@ -650,6 +675,10 @@ var DwenguinoSimulation = {
     var line = DwenguinoSimulation.debugger.debuggerjs.machine.getCurrentLoc().start.line - 1;
     var code = DwenguinoSimulation.debugger.code.split("\n")[line] === undefined ? '' : DwenguinoSimulation.debugger.code.split("\n")[line];
 
+    if(DwenguinoSimulation.scenarioView === "drawingrobot"){
+      DwenguinoSimulation.drawingrobotStep();
+    }
+    
     DwenguinoSimulation.debugger.debuggerjs.machine.step();
     DwenguinoSimulation.updateBlocklyColour();
     DwenguinoSimulation.handleScope();
@@ -849,6 +878,7 @@ var DwenguinoSimulation = {
         DwenguinoSimulation.stepmotorQueue = [];
         DwenguinoSimulation.servoAngleQueue = [];
         DwenguinoSimulation.colorQueue = [];
+        DwenguinoSimulation.sleepQueue = [];
         DwenguinoSimulation.resetBoard();
         window.stepMotorError = false;
         break;
@@ -894,6 +924,11 @@ var DwenguinoSimulation = {
     */
     sleep: function(delay) {
       // sleep is regulated inside step funtion
+
+      // Extra functionality to
+      // this.stepmotorQueue.push()
+      // this.servoAngleQueue.push(this.servoAngleQueue[this.servoAngleQueue.length-1]);
+      // this.colorQueue.push(this.colorQueue[this.colorQueue.length-1]);
     },
 
     /*
@@ -1365,6 +1400,7 @@ var DwenguinoSimulation = {
   stepmotorQueue: [],
   servoAngleQueue: [],
   colorQueue: [],
+  sleepQueue: [],
   drawingrobotStep: function() {
     // Get the next point and calculate the line lengths for this point
     if( DwenguinoSimulation.stepmotorQueue.length !== 0){
@@ -1509,7 +1545,7 @@ var DwenguinoSimulation = {
     var p1 = Math.round(position[1],0);
     if(p0 < sc.paper.position.x || p0 > sc.paper.position.x + sc.paper.width || p1 < sc.paper.position.y || p1 > sc.paper.position.y + sc.paper.height){
       if(!window.stepMotorError){
-          console.log(position[0] + "," + position[1]);
+          // console.log(position[0] + "," + position[1]);
         alert(MSG.bounds);
         DwenguinoSimulation.handleSimulationStop();
         window.stepMotorError = true;
@@ -1626,8 +1662,8 @@ var DwenguinoSimulation = {
     var stack = [];
     // var stackL = [];
     // var stackR = [];
-
-    for (var i = 0; i < 360; i+=5) { // Calculate X and Y points in the circle
+    var step = (radius >= 40) ? 1 : 5 // 
+    for (var i = 0; i < 360; i+=step) { // Calculate X and Y points in the circle
       var radians = i * (Math.PI/180);
       pointX = xCircle + radius * Math.cos(radians); // x  =  h + r cosθ
       pointY = yCircle + radius * Math.sin(radians); // y  =  k + r sinθ

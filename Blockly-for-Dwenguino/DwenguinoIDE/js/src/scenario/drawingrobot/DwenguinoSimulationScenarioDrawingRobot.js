@@ -120,7 +120,7 @@ DwenguinoSimulationScenarioDrawingRobot.prototype.initSimulationDisplay = functi
      self.containerHeight = simulationContainer.height();
  });
 
-  //Add canvas
+  //Add canvas for robot
   simulationContainer.append($("<canvas>").attr("id", "sim_canvas").attr("class","canvas"));
   //Add canvas for drawing
   simulationContainer.append($("<canvas>").attr("id", "sim_canvas_drawing").attr("class","canvas"));

@@ -42,7 +42,7 @@ var TutorialMenu = {
         
         $("#tutorialModal_categories_menu").append('<div id="tutorial_category_drawing_robot" class="tutorial_categories_item card"></div>');
         $("#tutorial_category_drawing_robot").append('<div class="category_tag">'+ MSG.tutorialMenu.catDrawingRobot +'</div>');
-        // $("#tutorial_category_drawing_robot").append('<div id="tutorial_categories_drawing_robot_img"></div>');  
+        $("#tutorial_category_drawing_robot").append('<div id="tutorial_categories_drawing_robot_img"></div>');  
 
         
         $("#tutorialModal .modal-footer").empty();

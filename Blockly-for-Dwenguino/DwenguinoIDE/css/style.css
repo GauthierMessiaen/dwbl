@@ -1074,6 +1074,14 @@ span.grippy::after {
     background-repeat: no-repeat;
 }
 
+#tutorial_categories_drawing_robot_img {
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/scenarios/scenario_drawingrobot.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 .tutorial_item{
     padding: 4px 7px;
     color: #333;
@@ -1205,4 +1213,8 @@ span.grippy::after {
     width: fit-content;
     margin-left: 125px;
     padding-top: 7px;
+}
+
+.tutorial_error_message {
+    margin-bottom: 20px;
 }

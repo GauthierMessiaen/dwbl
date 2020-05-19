@@ -28,7 +28,8 @@ var tutorialTargets = {
   robotComponentsMenuLcdPlusbutton: "rc_lcd_plus_button",
   robotComponensMenu: "robot_components_menu",
   simulatorScenarioDrawingRobot:"sim_scenario_drawingrobot",
-  menu: "db_menu"
+  menu: "db_menu",
+  simulatorButtons: "sim_buttons"
 };
 
 /*

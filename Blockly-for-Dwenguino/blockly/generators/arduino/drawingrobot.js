@@ -11,51 +11,69 @@ goog.require('Blockly.Arduino');
 
 // This is now integrated in the setup loop structure so children don't have to know about the initialisation step and can just start coding
 Blockly.Arduino['initdwenguino'] = function (block) {
-
 //    Blockly.Arduino.definitions_['define_wire_h'] = '#include <Wire.h>\n';
 //    Blockly.Arduino.definitions_['define_dwenguino_h'] = '#include <Dwenguino.h>\n';
 //    Blockly.Arduino.definitions_['define_lcd_h'] = '#include <LiquidCrystal.h>\n';
 
     //Blockly.Arduino.setups_['initDwenguino'] = 'initDwenguino();';
     //var code = 'initDwenguino();';
-
-    //import stepper motors
-    Blockly.Arduino.definitions_['define_dwenguinosteppermotor_h'] = "#include <Stepper.h>\n";
-    // declare motor on chosen channel
-     // change this to fit the number of steps per revolution for your motor
-    var stepsPerRevolution = 200;
-    Blockly.Arduino.definitions_['declare_stepper_motor_on_channel_1'] = 'Stepper stepper1(' + stepsPerRevolution + ', 8, 9, 10, 11);\n';
-    Blockly.Arduino.definitions_['declare_stepper_motor_on_channel_2'] = 'Stepper stepper2(' + stepsPerRevolution + ', 8, 9, 10, 11);\n';
-    Blockly.Arduino.definitions_['declare_stepper_motor_on_channel_1'] = 'int stepCount1 = 0;\n';
-    Blockly.Arduino.definitions_['declare_stepper_motor_on_channel_2'] = 'int stepCount2 = 0;\n';
-    // initialize the serial port:
-    Blockly.Arduino.setups_['initSerialPort1'] = 'Serial.begin(9600);\n';
-    Blockly.Arduino.setups_['initSerialPort2'] = 'Serial.begin(9600);\n';
-
     return code;
 };
 
-Blockly.Arduino['drawingrobot_stepper_motor'] = function(block) {
-  // //import dwenguino motors
-  // Blockly.Arduino.definitions_['define_dwenguinosteppermotor_h'] = "#include <Stepper.h>\n";
-  // // declare motor on chosen channel
-  // Blockly.Arduino.definitions_['declare_stepper_motor_on_channel_' + value_channel] = 'Stepper motor(numberofstep,9,11,10,6);\n'; // we use pins 9, 11, 10, 6
-  // //Set speed of motor
-  // Blockly.Arduino.setups_['define_dwenguino_servo' + value_channel] = 'stpMotor' + value_channel + '.setSpeed(' + 9 + ');\n';
+// ----- Algemene functies -----
+Blockly.Arduino['drawingrobot_setup'] = function() {
+  // Include the Arduino Stepper.h library:
+  Blockly.Arduino.definitions_['define_dwenguinosteppermotor_h'] = "#include <Stepper.h>\n";
+  // Define number of steps per rotation:
+  Blockly.Arduino.definitions_['declare_stepper_motor_on_channel_1'] = 'const int stepsPerRevolution = 2048;\n';
+  // Wiring:
+  // Pin 8 to IN1 on the ULN2003 driver
+  // Pin 9 to IN2 on the ULN2003 driver
+  // Pin 10 to IN3 on the ULN2003 driver
+  // Pin 11 to IN4 on the ULN2003 driver
+  // Create stepper object called 'myStepper', note the pin order:
+  Blockly.Arduino.definitions_['declare_stepper_motor_on_channel_1'] = 'Stepper myStepper1 = Stepper(stepsPerRevolution, 8, 10, 9, 11);';
+  Blockly.Arduino.definitions_['declare_stepper_motor_on_channel_2'] = 'Stepper myStepper2= Stepper(stepsPerRevolution, 4, 6, 5, 7);\n';
   
-  // //start motor
-  // //var code = 'stpMotor' + value_channel + '.setSpeed(' + value_speed + ');\n';
-  // //var code = 'stpMotor' + value_channel + '.step(' + value_step + ');\n';
-  // var code = '';
-  // return code;
+  Blockly.Arduino.definitions_['declare_stepcount_on_channel_1'] = 'int stepCount1 = 0;';
+  Blockly.Arduino.definitions_['declare_stepcount_on_channel_2'] = 'int stepCount2 = 0;';
+
+  Blockly.Arduino.definitions_['variables'] = 'int steps1 = 0;\nint steps2 = 0;\n'
+
+  Blockly.Arduino.setups_['setSpeed'] = 'myStepper.setSpeed(5);\n  myStepper2.setSpeed(5);\n';
+  // Begin Serial communication at a baud rate of 9600:
+  Blockly.Arduino.setups_['serial'] = 'Serial.begin(9600);\n';
+};
+
+// ----- Blokken -----
+Blockly.Arduino['drawingrobot_stepper_motor'] = function(block) {
+  Blockly.Arduino['drawingrobot_setup']();
 
   var value_channel = Blockly.Arduino.valueToCode(block, 'channel', Blockly.Arduino.ORDER_ATOMIC);
-  var value_steps = Blockly.Arduino.valueToCode(block, 'steps', Blockly.Arduino.ORDER_ATOMIC);
-  
-    //start motor
-    var code = 'stepper' + value_channel + '.step(' + value_steps + ');\n';
-    return code;
+  var value_steps = Blockly.Arduino.valueToCode(block, 'step', Blockly.Arduino.ORDER_ATOMIC);
+  console.log(value_steps);
+  var code = ''
+  + 'bool direction = (' + value_steps + ' >= 0); // true = positive, false = negative\n'
+  + 'int startSteps = steps' + value_channel + ';\n'
+  + 'int endSteps = 0;\n'
+  + 'if(direction){\n'
+  + '  endSteps = startSteps + ' + value_steps + ';\n'
+  + '} else {\n'
+  + '  endSteps = startSteps - ' + value_steps + ';\n'
+  + '}\n'
+  + 'while (steps' + value_channel + ' != endSteps){\n'
+  + '  if(direction){\n'
+  + '    myStepper' + value_channel + '.step(1);\n'
+  + '    delay(10);\n'
+  + '    stepCount' + value_channel + '++;\n'
+  + '  } else {\n'
+  + '    myStepper' + value_channel + '.step(-1);\n'
+  + '    delay(10);\n'
+  + '    stepCount' + value_channel + '--;\n'
+  + '  }\n'
+  + '}\n';
 
+  return code;
 }
 
 
