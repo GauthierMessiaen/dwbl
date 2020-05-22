@@ -57,6 +57,13 @@ TutorialMultipleChoiceQuestion.prototype.checkAnswer = function(){
     }
 }
 
+TutorialMultipleChoiceQuestion.prototype.checkAnswerBool = function(){
+    this.removePreviousFeedback();
+    var answerText = $('input[name='+this.name+']:checked').val();
+
+    return (this.correctAnswer.text.localeCompare(answerText) === 0);
+}
+
 TutorialMultipleChoiceQuestion.prototype.removePreviousFeedback = function(){
     $("#reply").remove();
 }

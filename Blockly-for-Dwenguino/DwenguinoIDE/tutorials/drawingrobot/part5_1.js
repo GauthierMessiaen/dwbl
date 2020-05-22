@@ -4,8 +4,8 @@
 
 tutorials.drawingRobot5_1 = {
     category: "drawingrobot",
-    targets: new Array(14).fill(tutorialTargets.simulatorStopButton),
-    placements: new Array(14).fill("right"),
+    targets: new Array(14).fill(tutorialTargets.difficultyMenu),
+    placements: new Array(14).fill("bottom"),
     nrOfSteps: 14,
     xOffsets: new Array(14).fill(0),
     yOffsets: new Array(14).fill(0),

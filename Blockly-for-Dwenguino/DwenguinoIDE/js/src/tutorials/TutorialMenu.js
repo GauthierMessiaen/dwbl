@@ -42,7 +42,11 @@ var TutorialMenu = {
         
         $("#tutorialModal_categories_menu").append('<div id="tutorial_category_drawing_robot" class="tutorial_categories_item card"></div>');
         $("#tutorial_category_drawing_robot").append('<div class="category_tag">'+ MSG.tutorialMenu.catDrawingRobot +'</div>');
-        $("#tutorial_category_drawing_robot").append('<div id="tutorial_categories_drawing_robot_img"></div>');  
+        $("#tutorial_category_drawing_robot").append('<div id="tutorial_categories_drawing_robot_img"></div>');
+
+        $("#tutorialModal_categories_menu").append('<div id="tutorial_category_drawing_robot2" class="tutorial_categories_item card"></div>');
+        $("#tutorial_category_drawing_robot2").append('<div class="category_tag">'+ MSG.tutorialMenu.catDrawingRobot2 +'</div>');
+        $("#tutorial_category_drawing_robot2").append('<div id="tutorial_categories_drawing_robot_img2"></div>');
 
         
         $("#tutorialModal .modal-footer").empty();
@@ -71,6 +75,10 @@ var TutorialMenu = {
 
         $("#tutorial_category_drawing_robot").click(function() {
             TutorialMenu.loadTutorialsMenu("drawingrobot");
+        });
+
+        $("#tutorial_category_drawing_robot2").click(function() {
+            TutorialMenu.loadTutorialsMenu("drawingrobot2");
         });
 
         $('.close').click(function() {

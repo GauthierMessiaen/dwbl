@@ -2,13 +2,13 @@
  * Implementation of this tour with Hopscotch
  */
 
-tutorials.drawingRobot4_2 = {
-    category: "drawingrobot",
+tutorials.drawingRobot2_4_2 = {
+    category: "drawingrobot2",
     targets: [
-      tutorialTargets.simulatorStopButton,
+      tutorialTargets.difficultyMenu,
     ],
     placements: [
-      "right",
+      "bottom",
     ],
     nrOfSteps: 3,
     xOffsets: [
@@ -30,8 +30,8 @@ tutorials.drawingRobot4_2 = {
       var i;
       for (i = 0 ; i < this.nrOfSteps ; i++){
         this.steps.push({
-          title: MSG.tutorials.drawingrobot['part4_2'].stepTitles[i],
-          content: MSG.tutorials.drawingrobot['part4_2'].stepContents[i],
+          title: MSG.tutorials.drawingrobot['part4_2'].stepTitles2[i],
+          content: MSG.tutorials.drawingrobot['part4_2'].stepContents2[i],
           target: this.targets[0],
           placement: this.placements[0],
           showCloseButton:"true",
@@ -87,7 +87,7 @@ tutorials.drawingRobot4_2 = {
       DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialNextStep", DwenguinoBlockly.tutorialIdSetting + ",step" + curr + ",xml:"+JSON.stringify(xml.innerHTML)));
       // console.log(DwenguinoBlockly.createEvent("tutorialNextStep", DwenguinoBlockly.tutorialIdSetting));
       
-      
+
       if(curr === 2){
         drawingrobotTutorialChecks.checkExercise4_2();
       }
@@ -103,6 +103,7 @@ tutorials.drawingRobot4_2 = {
 
     onClose: function() {
       DwenguinoBlockly.setDifficultyLevel(0);
+      $("#tutorial_example").remove();
     },
     onError: function() {
       DwenguinoBlockly.setDifficultyLevel(0);

@@ -2,10 +2,10 @@
  * Implementation of this tour with Hopscotch
  */
 
-tutorials.drawingRobot7_2 = {
-    category: "drawingrobot",
-    targets: new Array(10).fill(tutorialTargets.simulatorStopButton),
-    placements: new Array(10).fill("right"),
+tutorials.drawingRobot2_7_2 = {
+    category: "drawingrobot2",
+    targets: new Array(10).fill(tutorialTargets.difficultyMenu),
+    placements: new Array(10).fill("bottom"),
     nrOfSteps: 10,
     xOffsets: new Array(10).fill(0),
     yOffsets: new Array(10).fill(0),
@@ -93,7 +93,9 @@ tutorials.drawingRobot7_2 = {
       console.log(DwenguinoBlockly.createEvent("tutorialPrevStep", DwenguinoBlockly.tutorialIdSetting));
 
     },
-    
+    onClose: function(){
+      $("#tutorial_example").remove();
+    },
     onShow: function(){      
       var curr = hopscotch.getCurrStepNum();  
       if (curr !== 1 ){

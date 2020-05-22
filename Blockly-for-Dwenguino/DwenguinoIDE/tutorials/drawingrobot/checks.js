@@ -99,6 +99,26 @@ var drawingrobotTutorialChecks = {
     DwenguinoBlockly.loadFileXmlIntoWorkspace(xml);
   },
 
+  checkAnswer: function(question) {
+    var curr = hopscotch.getCurrStepNum();
+
+    var answer = $('input[name='+ question.name +']:checked').attr("id");
+    $("#sim_menu").show();
+    $("#sim_scenarioTag").css("margin-top","0px"); 
+
+
+    if( !question.checkAnswerBool() ){
+      drawingrobotTutorialChecks.failed("");
+      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialQuestionFail", DwenguinoBlockly.tutorialIdSetting + ";step" + curr + "question:" + question.name + "answer:" + $('input[name=q1]:checked').val()));
+    } else {
+      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialQuestionSuccess", DwenguinoBlockly.tutorialIdSetting + ";step" + curr + "question:" + question.name ));
+    }
+    if(answer){
+      $('#'+answer).parent().css("color","red");
+    }
+    
+  },
+
   //Check if simulation pane is open
   simulationPaneOpen: function(){
     var curr = hopscotch.getCurrStepNum();
@@ -391,6 +411,17 @@ var drawingrobotTutorialChecks = {
       }
     }
 
+    // check if: all move blocks have different direction
+    var directions = [0,0,0,0];
+    $(xml).find("field[name='direction']").each(function() {
+      directions[$(this).text()]++;
+    });
+    for(var i = 0; i < directions.length; i++){
+      if(directions[i] > 1){
+        failed = true;
+      }
+    }
+
     if( l < 1){
       failed = true;
       hints = hints.concat( MSG.tutorials.drawingrobot['part2_2'].hints[0] ); 
@@ -419,15 +450,17 @@ var drawingrobotTutorialChecks = {
 
     if( failed ){
       drawingrobotTutorialChecks.failed(hints);
+    } else {
+      // the exercise is correct, but it can be improved = don't fail the exercise, but let the student know it can be improved
+      var improvable = (m  < 4 || l > 1); // if a square is drawn with the "line" objects instead of the "move" objects
+      if(improvable){
+        setTimeout( function() { // use a timeout to show the text, otherwise the text won't be shown.
+          $(".tutorial_error_message").append(MSG.tutorials.drawingrobot.better);
+        }, 20);
+      }
     }
 
-    // the exercise is correct, but it can be improved = don't fail the exercise, but let the student know it can be improved
-    var improvable = (m  < 4 || l > 1); // if a square is drawn with the "line" objects instead of the "move" objects
-    if(improvable){
-      setTimeout( function() { // use a timeout to show the text, otherwise the text won't be shown.
-        $(".tutorial_error_message").append(MSG.tutorials.drawingrobot.better);
-      }, 20);
-    }
+    
   },
   checkExercise2_2_2: function() {
     var xml = Blockly.Xml.workspaceToDom(DwenguinoBlockly.workspace);
@@ -673,7 +706,7 @@ var drawingrobotTutorialChecks = {
           failed = true;
           hints = hints.concat( MSG.tutorials.drawingrobot['part4_1'].hints[1] );
         }
-        if( nr_block.parent() || nr_block.parent().attr("name") !== "VALUE" ) {
+        if( !nr_block.parent() || nr_block.parent().attr("name") !== "VALUE" ) {
           failed = true;
           hints = hints.concat( MSG.tutorials.drawingrobot['part4_1'].hints[2] );
         }
@@ -1026,112 +1059,132 @@ var drawingrobotTutorialChecks = {
     },
 
   // ---------- Part 4_2 ----------
-    checkExercise4_2: function() {
-      var xml = Blockly.Xml.workspaceToDom(DwenguinoBlockly.workspace);
-      var hints = "";
+  checkExercise4_2: function() {
+    var xml = Blockly.Xml.workspaceToDom(DwenguinoBlockly.workspace);
+    var hints = "";
 
-      var failed = false;
+    var failed = false;
 
-      // check if: 3 variables are used and have the correct name
-      var blocks = xml.getElementsByTagName("variable");
-      for(var i = 0; i < blocks.length; i++){
-        var type = blocks[i].getAttribute("type");
-        if(type !== "Number"){
-          failed = true;
-          hints = hints.concat( MSG.tutorials.drawingrobot['part4_2'].hints[0] );
-        }
-        var answers = ["a","b","c"];
-        if(!answers.includes(blocks[i].innerHTML.toLowerCase()) ){
-          failed = true;
-          hints = hints.concat( MSG.tutorials.drawingrobot['part4_2'].hints[1] );
-        }
+    // check if: 3 variables are used and have the correct name
+    var blocks = xml.getElementsByTagName("variable");
+    for(var i = 0; i < blocks.length; i++){
+      var type = blocks[i].getAttribute("type");
+      if(type !== "Number"){
+        failed = true;
+        hints = hints.concat( MSG.tutorials.drawingrobot['part4_2'].hints[0] );
       }
+      var answers = ["a","b","c"];
+      if(!answers.includes(blocks[i].innerHTML.toLowerCase()) ){
+        failed = true;
+        hints = hints.concat( MSG.tutorials.drawingrobot['part4_2'].hints[1] );
+      }
+    }
+    
+    var blocks = xml.getElementsByTagName("block");
+    var block_var = 0;    // nr of declare variable blocks
+    var block_nr = 0;     //nr of Number blocks
+    var block_a = 0;      //nr of a blocks
+    var block_b = 0;      //nr of b blocks
+    var block_c = 0;      //nr of c blocks
+    var block_mult = 0;   //nr of ... x ... blocks
+    var block_minus = 0;  //nr of ... - ... blocks
+    for(var i = 0; i < blocks.length; i++){
+      var type = blocks[i].getAttribute("type");
+      switch(type) {
+        case "variables_declare_set_int": // block: set variable
+          block_var++;
+          break;
+        case "char_type": // block: number
+          block_nr++;
+          break;
+        case "variables_get_int": // block: use variable
+          if(blocks[i].firstChild.textContent.toLowerCase() === "a"){
+            block_a++;
+          } else  if(blocks[i].firstChild.textContent.toLowerCase() === "b"){
+            block_b++;
+          } else  if(blocks[i].firstChild.textContent.toLowerCase() === "c"){
+            block_c++;
+          }
+          break;
+        case "math_arithmetic": // block: ... -|x ...
+          if(blocks[i].firstChild.textContent === "MINUS") {
+            block_minus++;
+            var left = blocks[i].children[1].firstChild.textContent;
+            var right = blocks[4].children[2].firstChild.textContent;
+            if(left !== "a" || right !== "10"){
+              failed = true;
+              hints = hints.concat( MSG.tutorials.drawingrobot['part4_2'].hints[7] );
+            }
+          }
+
+          if(blocks[i].firstChild.textContent === "MULTIPLY") {
+            block_mult++;
+            var left = blocks[i].children[1].firstChild.textContent;
+            var right = blocks[i].children[2].firstChild.textContent;
+            if((left !== "a" || right !== "b") && (left !== "b" || right !== "a")){
+              failed = true;
+              hints = hints.concat( MSG.tutorials.drawingrobot['part4_2'].hints[8] );
+            }
+          }
+          break;
+      }
+    }
+    // check if: enough blocks are used
+    if(blocks.length <= 11) {
+      failed = true;
+      hints = hints.concat( MSG.tutorials.drawingrobot['part4_2'].hints[2] );
+    }
+    // check if: 3 variables are used
+    if ( block_var < 3 ){
+      failed = true;
+      hints = hints.concat( MSG.tutorials.drawingrobot['part4_2'].hints[3] );
+    }
+    // check if: ...x... block is used
+    if ( block_mult < 1 ){
+      failed = true;
+      hints = hints.concat( MSG.tutorials.drawingrobot['part4_2'].hints[4] );
+    }
+    // check if: ...-... block is used
+    if ( block_minus < 1 ){
+      failed = true;
+      hints = hints.concat( MSG.tutorials.drawingrobot['part4_2'].hints[5] );
+    }
+    // check if: each variable is used at least once
+    if ( block_a < 3 || block_b < 2 || block_c < 1 ){
+      failed = true;
+      hints = hints.concat( MSG.tutorials.drawingrobot['part4_2'].hints[6] );
+    }
+    // check if: at least 2 number blocks are used
+    if(  block_nr < 2 ){
+      failed = true;
+    }
+
+
+
+    // check if: input values are correct
+    var a = $("#varA");
+    var b = $("#varB");
+    var c = $("#varC");
+    var failedA = (a.val() !== "20");
+    var failedB = (b.val() !== "10");
+    var failedC = (c.val() !== "200");
+    
+    if( failed || failedA || failedB || failedC ){
+      if(failedA || failedB || failedC) hints = hints.concat( MSG.tutorials.drawingrobot['part4_2'].hints[9] );
       
-      var blocks = xml.getElementsByTagName("block");
-      var block_var = 0;    // nr of declare variable blocks
-      var block_nr = 0;     //nr of Number blocks
-      var block_a = 0;      //nr of a blocks
-      var block_b = 0;      //nr of b blocks
-      var block_c = 0;      //nr of c blocks
-      var block_mult = 0;   //nr of ... x ... blocks
-      var block_minus = 0;  //nr of ... - ... blocks
-      for(var i = 0; i < blocks.length; i++){
-        var type = blocks[i].getAttribute("type");
-        switch(type) {
-          case "variables_declare_set_int": // block: set variable
-            block_var++;
-            break;
-          case "char_type": // block: number
-            block_nr++;
-            break;
-          case "variables_get_int": // block: use variable
-            if(blocks[i].firstChild.textContent.toLowerCase() === "a"){
-              block_a++;
-            } else  if(blocks[i].firstChild.textContent.toLowerCase() === "b"){
-              block_b++;
-            } else  if(blocks[i].firstChild.textContent.toLowerCase() === "c"){
-              block_c++;
-            }
-            break;
-          case "math_arithmetic": // block: ... -|x ...
-            if(blocks[i].firstChild.textContent === "MINUS") {
-              block_minus++;
-              var left = blocks[i].children[1].firstChild.textContent;
-              var right = blocks[4].children[2].firstChild.textContent;
-              if(left !== "a" || right !== "10"){
-                failed = true;
-                hints = hints.concat( MSG.tutorials.drawingrobot['part4_2'].hints[7] );
-              }
-            }
+      drawingrobotTutorialChecks.failed(hints);
 
-            if(blocks[i].firstChild.textContent === "MULTIPLY") {
-              block_mult++;
-              var left = blocks[i].children[1].firstChild.textContent;
-              var right = blocks[i].children[2].firstChild.textContent;
-              if((left !== "a" || right !== "b") && (left !== "b" || right !== "a")){
-                failed = true;
-                hints = hints.concat( MSG.tutorials.drawingrobot['part4_2'].hints[8] );
-              }
-            }
-            break;
-        }
-      }
-      // check if: enough blocks are used
-      if(blocks.length <= 11) {
-        failed = true;
-        hints = hints.concat( MSG.tutorials.drawingrobot['part4_2'].hints[2] );
-      }
-      // check if: 3 variables are used
-      if ( block_var < 3 ){
-        failed = true;
-        hints = hints.concat( MSG.tutorials.drawingrobot['part4_2'].hints[3] );
-      }
-      // check if: ...x... block is used
-      if ( block_mult < 1 ){
-        failed = true;
-        hints = hints.concat( MSG.tutorials.drawingrobot['part4_2'].hints[4] );
-      }
-      // check if: ...-... block is used
-      if ( block_minus < 1 ){
-        failed = true;
-        hints = hints.concat( MSG.tutorials.drawingrobot['part4_2'].hints[5] );
-      }
-      // check if: each variable is used at least once
-      if ( block_a < 3 || block_b < 2 || block_c < 1 ){
-        failed = true;
-        hints = hints.concat( MSG.tutorials.drawingrobot['part4_2'].hints[6] );
-      }
-      // check if: at least 2 number blocks are used
-      if(  block_nr < 2 ){
-        failed = true;
-      }
-      
-      if( failed ){
-        drawingrobotTutorialChecks.failed(hints);
-      }
-    },
+      $("#varA").val(a.val());
+      $("#varB").val(b.val());
+      $("#varC").val(c.val());
 
+      if (failedA) $("#varA").parent().css("color","red");
+      if (failedB) $("#varB").parent().css("color","red");
+      if (failedC) $("#varC").parent().css("color","red"); 
+    }
 
+    
+  },
 
   // ---------- Part 5_1 ----------
   checkExercise5_1_allowed_blocks: ["setup_loop_structure",
@@ -1542,9 +1595,9 @@ var drawingrobotTutorialChecks = {
 
   checkExercise6_1_2: function() {
     // do previous checks
-    drawingrobotTutorialChecks.checkExercise6_1_1();
+    drawingrobotTutorialChecks.checkExercise6_1_1(4);
     // If the previous steps where incorrect, then this function doesn't need to run anymore
-    if(hopscotch.getCurrStepNum() !== 6){
+    if(hopscotch.getCurrStepNum() !== 11){
       return;
     }
 
@@ -1894,24 +1947,27 @@ var drawingrobotTutorialChecks = {
 
       // check if: at least 1 'lifts stylus' blok
       // check if: 'draw line' blok hangs below 'lift stylus' blok
-      var lift = $(xml).find("block[type='drawingrobot_lift_stylus']" || lift[0].firstChild === null || lift[0].firstChild.firstChild === null || lift[0].firstChild.firstChild.getAttribute("type") !== "drawingrobot_line");
-      if ( lift.length < 1 ){
+      var lift = $(xml).find("block[type='drawingrobot_lift_stylus']"); 
+      if ( lift.length < 1 || lift[0].firstChild === null || lift[0].firstChild.firstChild === null || lift[0].firstChild.firstChild.getAttribute("type") !== "drawingrobot_line"){
         failed = true;
-        hints = hints.concat( MSG.tutorials.drawingrobot['part6_1'].hints[0] );
+        hints = hints.concat( MSG.tutorials.drawingrobot['part6_2'].hints[0] );
       }
       // check if: at least 1 'lower stylus' blok
       // check if: 'lower stylus' blok hangs below 'draw line' blok
       var lower = $(xml).find("block[type='drawingrobot_lower_stylus']");
-      if ( lower.length < 1 || lower[0].parentNode === null || lower[0].parentNode.parentNode === null || lower[0].parentNode.parentNode.getAttribute("type") !== "drawingrobot_line"){
-        failed = true;
-        hints = hints.concat( MSG.tutorials.drawingrobot['part6_2'].hints[0] );
+      if (!failed){
+        if ( lower.length < 1 || lower[0].parentNode === null || lower[0].parentNode.parentNode === null || lower[0].parentNode.parentNode.getAttribute("type") !== "drawingrobot_line"){
+          failed = true;
+          hints = hints.concat( MSG.tutorials.drawingrobot['part6_2'].hints[0] );
+        }
       }
-
       //check if: draw line to (110,200) exists
       var line = $(xml).find("block[type='drawingrobot_line']")[0];
-      if (!line) {
-        failed = true;
-        hints = hints.concat( MSG.tutorials.drawingrobot['part6_2'].hints[0] );
+      if ( !failed ) {
+        if (!line) {
+          failed = true;
+          hints = hints.concat( MSG.tutorials.drawingrobot['part6_2'].hints[0] );
+        }
       }
       
       // find the loop
@@ -1947,7 +2003,7 @@ var drawingrobotTutorialChecks = {
       }
       // checks for 'while' loop
       if(stat_loop_while_nr > 0){
-
+        hints = hints.concat( MSG.tutorials.drawingrobot['part6_2'].hints[7] );
 
       }
       if(!failed){
@@ -2011,12 +2067,77 @@ var drawingrobotTutorialChecks = {
       }
     },
 
+    // ---------- Part 6_2 ----------
+    checkExercise6_3_1: function() {
+      var xml = Blockly.Xml.workspaceToDom(DwenguinoBlockly.workspace);
+      var hints = "";
+
+      var failed = drawingrobotTutorialChecks.loop();
+      if(failed){
+        hints = hints.concat( MSG.tutorials.drawingrobot['part2_1'].hints[0] );
+      }
+
+      // check if: at least 1 'lifts stylus' blok
+      // check if: 'draw line' blok hangs below 'lift stylus' blok
+      var lift = $(xml).find("block[type='drawingrobot_lift_stylus']"); 
+      if ( lift.length < 1 || lift[0].firstChild === null || lift[0].firstChild.firstChild === null || lift[0].firstChild.firstChild.getAttribute("type") !== "drawingrobot_line"){
+        failed = true;
+        hints = hints.concat( MSG.tutorials.drawingrobot['part6_2'].hints[0] );
+      }
+      // check if: at least 1 'lower stylus' blok
+      // check if: 'lower stylus' blok hangs below 'draw line' blok
+      var lower = $(xml).find("block[type='drawingrobot_lower_stylus']");
+      if (!failed){
+        if ( lower.length < 1 || lower[0].parentNode === null || lower[0].parentNode.parentNode === null || lower[0].parentNode.parentNode.getAttribute("type") !== "drawingrobot_line"){
+          failed = true;
+          hints = hints.concat( MSG.tutorials.drawingrobot['part6_2'].hints[0] );
+        }
+      }
+      //check if: draw line to (110,200) exists
+      var line = $(xml).find("block[type='drawingrobot_line']")[0];
+      if ( !failed ) {
+        if (!line) {
+          failed = true;
+          hints = hints.concat( MSG.tutorials.drawingrobot['part6_2'].hints[0] );
+        }
+      }
+
+      // check if: at least 2 variables are used
+      var nrOfVars = $(xml).find("variable[type='number']").length;
+      nrOfVars -= $(xml).find("block[type='controls_for']").length; // a for loop creates variables we don't want to count here
+      if( nrOfVars < 2 ){
+        failed = true;
+        hints = hints.concat( MSG.tutorials.drawingrobot['part6_3'].hints[0] );
+      } else if ( nrOfVars > 3) {
+        failed = true;
+        hints = hints.concat( MSG.tutorials.drawingrobot['part6_3'].hints[1] );
+      } else if (nrOfVars === 2) {
+        if ($(xml).find("block[type='math_arithmetic']").length < 3) {
+          failed = true;
+          hints = hints.concat( MSG.tutorials.drawingrobot['part6_3'].hints[2] );
+        }
+      }
+
+      if ( $(xml).find("block[type='controls_whileuntil']").length > 0) {
+        hints = hints.concat( MSG.tutorials.drawingrobot['part6_3'].hints[3] );
+      }
+
+
+      if ( $(xml).find("block[type='variables_declare_set_int']").length < nrOfVars*2 ){
+        failed = true;
+        hints = hints.concat( MSG.tutorials.drawingrobot['part6_3'].hints[4] );
+      }      
+
+      if( failed ){
+        drawingrobotTutorialChecks.failed(hints);
+      }
+    },
 
     // ---------- Part 7_1 ----------
     checkExercise7_1_1: function() {
       // check if: difficulty level is correct
       if ( DwenguinoBlockly.difficultyLevel !== 1 ){
-        drawingrobotTutorialChecks.failed("",false);
+        drawingrobotTutorialChecks.failed("");
       }
     },
     checkExercise7_1_2: function() {
@@ -2024,7 +2145,7 @@ var drawingrobotTutorialChecks = {
       var xml = Blockly.Xml.workspaceToDom(DwenguinoBlockly.workspace);
 
       if ($(xml).find("block[type='procedures_defnoreturn']").length !== 1 ) {
-        drawingrobotTutorialChecks.failed("",false);
+        drawingrobotTutorialChecks.failed("");
       }
     },
     checkExercise7_1_3: function() {
@@ -2032,7 +2153,7 @@ var drawingrobotTutorialChecks = {
       var xml = Blockly.Xml.workspaceToDom(DwenguinoBlockly.workspace);
       
       if ($(xml).find("block[type='procedures_defnoreturn']").find("field[name='NAME']").html().toLowerCase() !== "teken rechthoek") {
-        drawingrobotTutorialChecks.failed("",false);
+        drawingrobotTutorialChecks.failed("");
       }
     },
     checkExercise7_1_4: function() {
@@ -2045,35 +2166,39 @@ var drawingrobotTutorialChecks = {
       // find move blocks
       blocks = $(xml).find("block[type='procedures_defnoreturn']").find("block[type='drawingrobot_move']");
       // remove next blocks = isolate the move blocks from eachother
-      $(blocks[0]).find("next").remove()
+      $(blocks[0]).find("next").remove();
 
       //check if: first move block is correct
       var direction = Number($(blocks[0]).find("field[name='direction']").html());
       var num = Number($(blocks[0]).find("field[name='NUM']").html());
       if(direction !== 3 || num !== 20){
         failed = true;
+        hints = hints.concat( MSG.tutorials.drawingrobot['part7_1'].hints[0] ); 
       }
       // check if: second move block is correct
       direction = Number($(blocks[1]).find("field[name='direction']").html());
       num = Number($(blocks[1]).find("field[name='NUM']").html());
       if(direction !== 1 || num !== 20){
         failed = true;
+        hints = hints.concat( MSG.tutorials.drawingrobot['part7_1'].hints[0] );
       }
       // check if: third move block is correct
       direction = Number($(blocks[2]).find("field[name='direction']").html());
       num = Number($(blocks[2]).find("field[name='NUM']").html());
       if(direction !== 2 || num !== 20){
         failed = true;
+        hints = hints.concat( MSG.tutorials.drawingrobot['part7_1'].hints[0] );
       }
       // check if: fourth move block is correct
       direction = Number($(blocks[3]).find("field[name='direction']").html());
       num = Number($(blocks[3]).find("field[name='NUM']").html());
       if(direction !== 0 || num !== 20){
         failed = true;
+        hints = hints.concat( MSG.tutorials.drawingrobot['part7_1'].hints[0] );
       }
 
       if( failed ){
-        drawingrobotTutorialChecks.failed(hints, true);
+        drawingrobotTutorialChecks.failed(hints);
       }
     },
     checkExercise7_1_5: function() {
@@ -2083,25 +2208,31 @@ var drawingrobotTutorialChecks = {
       blocks = $(xml).find("block[type='setup_loop_structure']").find("block[type='drawingrobot_move']");
       // check if: move blocks are removed
       var failed = ( blocks.length !== 3 );
+      if (failed){
+        hints = hints.concat( MSG.tutorials.drawingrobot['part7_1'].hints[1] );
+      }
       
       // check if: first move block is correct
       var direction = Number($(blocks[0]).find("field[name='direction']").html());
       if(direction !== 1){
         failed = true;
+        hints = hints.concat( MSG.tutorials.drawingrobot['part7_1'].hints[2] );
       }
       // check if: second move block is correct
       direction = Number($(blocks[1]).find("field[name='direction']").html());
       if(direction !== 2){
         failed = true;
+        hints = hints.concat( MSG.tutorials.drawingrobot['part7_1'].hints[3] );
       }
       // check if: third move block is correct
       direction = Number($(blocks[2]).find("field[name='direction']").html());
       if(direction !== 0){
         failed = true;
+        hints = hints.concat( MSG.tutorials.drawingrobot['part7_1'].hints[4] );
       }
   
       if( failed ){
-        drawingrobotTutorialChecks.failed(hints, true);
+        drawingrobotTutorialChecks.failed(hints);
       }
     },
     checkExercise7_1_6: function() {
@@ -2136,7 +2267,7 @@ var drawingrobotTutorialChecks = {
       
 
       if( failed ){
-        drawingrobotTutorialChecks.failed(hints,true);
+        drawingrobotTutorialChecks.failed(hints);
       }
     },
 
@@ -2156,7 +2287,7 @@ var drawingrobotTutorialChecks = {
        }
 
       if( failed ){
-        drawingrobotTutorialChecks.failed(hints, true);
+        drawingrobotTutorialChecks.failed(hints);
       }
     },
     checkExercise7_1_8: function() {
@@ -2170,7 +2301,7 @@ var drawingrobotTutorialChecks = {
       var failed = ( block.find("arg[name='x']").length !== 1 || block.find("arg[name='y']").length !== 1)
 
       if( failed ){
-        drawingrobotTutorialChecks.failed(hints, true);
+        drawingrobotTutorialChecks.failed(hints);
       }
     },
     checkExercise7_1_9: function() {
@@ -2194,11 +2325,12 @@ var drawingrobotTutorialChecks = {
       // check if correct calculation is made:
       if( !possibilities.includes(calc) ){
         failed = true;
+        hints = hints.concat( MSG.tutorials.drawingrobot['part7_1'].hints[5] );
       }
 
 
       if( failed ){
-        drawingrobotTutorialChecks.failed(hints,true);
+        drawingrobotTutorialChecks.failed(hints);
       }
     },
     checkExercise7_1_10: function() {

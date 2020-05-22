@@ -4,19 +4,11 @@
 
 tutorials.drawingRobot6_3 = {
     category: "drawingrobot",
-    targets: [
-      tutorialTargets.simulatorStopButton,
-    ],
-    placements: [
-      "right",
-    ],
-    nrOfSteps: 7,
-    xOffsets: [
-      0,
-    ],
-    yOffsets: [
-      0,
-    ],
+    targets: new Array(3).fill(tutorialTargets.difficultyMenu),
+    placements: new Array(3).fill("bottom"),
+    nrOfSteps: 3,
+    xOffsets: new Array(3).fill(0),
+    yOffsets: new Array(3).fill(0),
     steps: [],
     i18n: {
       nextBtn: MSG.tutorials.next,
@@ -27,17 +19,21 @@ tutorials.drawingRobot6_3 = {
     },
     // Create the steps array dynamically by using the different arrays
     initSteps: function(){
-      var i;
-      for (i = 0 ; i < this.nrOfSteps ; i++){
+      this.targets[2] = tutorialTargets.difficultyMenu;
+      this.placements[2] = "bottom";
+      this.xOffsets[2] = -320;
+      this.yOffsets[2] = 0;
+
+      for (var i = 0 ; i < this.nrOfSteps ; i++){
         this.steps.push({
           title: MSG.tutorials.drawingrobot['part6_3'].stepTitles[i],
           content: MSG.tutorials.drawingrobot['part6_3'].stepContents[i],
-          target: this.targets[0],
-          placement: this.placements[0],
+          target: this.targets[i],
+          placement: this.placements[i],
           showCloseButton:"true",
           width: 450,
-          xOffset: this.xOffsets[0],
-          yOffset: this.yOffsets[0],
+          xOffset: this.xOffsets[i],
+          yOffset: this.yOffsets[i],
         });
       }
     },
@@ -80,7 +76,6 @@ tutorials.drawingRobot6_3 = {
       var curr = hopscotch.getCurrStepNum();
       var xml = Blockly.Xml.workspaceToDom(DwenguinoBlockly.workspace);
       DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialNextStep", DwenguinoBlockly.tutorialIdSetting + ",step" + curr + ",xml:"+JSON.stringify(xml.innerHTML)));
-      // console.log(DwenguinoBlockly.createEvent("tutorialNextStep", DwenguinoBlockly.tutorialIdSetting));
       
       
     //   // ---FOR TESTING---
@@ -88,21 +83,26 @@ tutorials.drawingRobot6_3 = {
     //       hopscotch.showStep(5);
     //   }// -------
 
-
-      if(curr === 2){
-        $('#tutorial_example_img').attr("src","./DwenguinoIDE/img/tutorials/drawingrobot/6_3.png");
+      if(curr === 1){
+        drawingrobotTutorialChecks.checkExercise6_3_1();
       }
+
     },
 
     onPrev: function(){
       DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialPrevStep", DwenguinoBlockly.tutorialIdSetting));
       console.log(DwenguinoBlockly.createEvent("tutorialPrevStep", DwenguinoBlockly.tutorialIdSetting));
 
-      var curr = hopscotch.getCurrStepNum();
     },
-    
+    onClose: function(){
+      $("#tutorial_example").remove();
+    },
     onShow: function(){        
+      var curr = hopscotch.getCurrStepNum();
+      $('div.hopscotch-bubble .hopscotch-bubble-arrow-container.up').css('left','325px');
+      if(curr !== 2){
         $('.hopscotch-bubble-arrow-container').css('visibility', 'hidden');
+      }
     },
 };
 

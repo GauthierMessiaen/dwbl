@@ -2,13 +2,13 @@
  * Implementation of this tour with Hopscotch
  */
 
-tutorials.drawingRobot1_2 = {
-    category: "drawingrobot",
+tutorials.drawingRobot2_1_2 = {
+    category: "drawingrobot2",
     targets: [
-      tutorialTargets.simulatorStopButton,
+      tutorialTargets.difficultyMenu,
     ],
     placements: [
-      "right"
+      "bottom"
     ],
     nrOfSteps: 3,
     xOffsets: [
@@ -105,6 +105,7 @@ tutorials.drawingRobot1_2 = {
 
     onClose: function() {
       DwenguinoBlockly.setDifficultyLevel(0);
+      $("#tutorial_example").remove();
     },
     onError: function() {
       DwenguinoBlockly.setDifficultyLevel(0);

@@ -4,8 +4,8 @@
 
 tutorials.drawingRobot7_1 = {
     category: "drawingrobot",
-    targets: new Array(22).fill(tutorialTargets.simulatorStopButton),
-    placements: new Array(22).fill("right"),
+    targets: new Array(22).fill(tutorialTargets.difficultyMenu),
+    placements: new Array(22).fill("bottom"),
     nrOfSteps: 22,
     xOffsets: new Array(22).fill(0),
     yOffsets: new Array(22).fill(0),
@@ -124,7 +124,9 @@ tutorials.drawingRobot7_1 = {
 
       var curr = hopscotch.getCurrStepNum();
     },
-    
+    onClose: function(){
+      $("#tutorial_example").remove();
+    },
     onShow: function(){      
       var curr = hopscotch.getCurrStepNum();  
       if (curr !== 3 ){

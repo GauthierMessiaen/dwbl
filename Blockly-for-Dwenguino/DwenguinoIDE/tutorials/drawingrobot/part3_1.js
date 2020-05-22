@@ -5,10 +5,10 @@
 tutorials.drawingRobot3_1 = {
     category: "drawingrobot",
     targets: [
-      tutorialTargets.simulatorStopButton
+      tutorialTargets.difficultyMenu
     ],
     placements: [
-      "right",
+      "bottom",
     ],
     nrOfSteps: 2,
     xOffsets: [

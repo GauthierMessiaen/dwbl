@@ -2,17 +2,15 @@
  * Implementation of this tour with Hopscotch
  */
 
-tutorials.drawingRobot2_1 = {
-    category: "drawingrobot",
-    timeStart: 0,
-    timeEnd: 0,
+tutorials.drawingRobot2_2_1 = {
+    category: "drawingrobot2",
     targets: [
-      tutorialTargets.simulatorStopButton
+      tutorialTargets.difficultyMenu
     ],
     placements: [
-      "right"
+      "bottom"
     ],
-    nrOfSteps: 9,
+    nrOfSteps: 10,
     xOffsets: [
       0,
     ],
@@ -29,11 +27,20 @@ tutorials.drawingRobot2_1 = {
     },
     // Create the steps array dynamically by using the different arrays
     initSteps: function(){
-      var i;
-      for (i = 0 ; i < this.nrOfSteps ; i++){
+      // Question 1
+      var question1Text = MSG.tutorials.drawingrobot['part2_1'].questions[0];
+      var answer1_a = new TutorialAnswer(0,MSG.tutorials.drawingrobot['part2_1'].answers[0]);
+      var answer1_b = new TutorialAnswer(1,MSG.tutorials.drawingrobot['part2_1'].answers[1]);
+      var answer1_c = new TutorialAnswer(2,MSG.tutorials.drawingrobot['part2_1'].answers[2]);
+      var answer1_d = new TutorialAnswer(3,MSG.tutorials.drawingrobot['part2_1'].answers[3]);
+      var answers1 = [answer1_a, answer1_b, answer1_c, answer1_d];
+      question1 = new TutorialMultipleChoiceQuestion("q1", question1Text, answers1, answer1_c);
+      MSG.tutorials.drawingrobot['part2_1'].stepContents2[5] = question1.getHtml();
+
+      for (var i = 0 ; i < this.nrOfSteps ; i++){
         this.steps.push({
-          title: MSG.tutorials.drawingrobot['part2_1'].stepTitles[i],
-          content: MSG.tutorials.drawingrobot['part2_1'].stepContents[i],
+          title: MSG.tutorials.drawingrobot['part2_1'].stepTitles2[i],
+          content: MSG.tutorials.drawingrobot['part2_1'].stepContents2[i],
           target: this.targets[0],
           placement: this.placements[0],
           showCloseButton:"true",
@@ -52,9 +59,6 @@ tutorials.drawingRobot2_1 = {
       var cats = ["catDrawingRobot"]; // catLogic catLoops catMath catText catVariables catDwenguino catSocialRobot catDrawingRobot catComments
       var blocks = ["drawingrobot_circle", "drawingrobot_rectangle", "drawingrobot_stepper_motor"];
       drawingrobotTutorialChecks.toolboxUpdate(cats,blocks, true,false);
-
-      // start timer
-      this.timeStart = performance.now();
     },
     onEnd: function(){
       var xml = Blockly.Xml.workspaceToDom(DwenguinoBlockly.workspace);
@@ -62,10 +66,6 @@ tutorials.drawingRobot2_1 = {
       //reset toolbox
       DwenguinoBlockly.setDifficultyLevel(0);
 
-      // end timer
-      this.timeEnd = performance.now();
-      var t = Math.round((this.timeEnd - this.timeStart)/1000,1);
-      console.log("time taken: " + t + " seconden");
 
       DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("endTutorial", DwenguinoBlockly.tutorialId + ",xml:" + JSON.stringify(xml.innerHTML) + ",timeTaken:" + t));
       TutorialMenu.endTutorial();
@@ -78,12 +78,13 @@ tutorials.drawingRobot2_1 = {
       
       
       // // ---FOR TESTING---
+      // if(curr === 1){
       //     hopscotch.showStep(5);
+      // }
       // // -------
-
+      
   
       if(curr === 2){
-          $("#sim_start").removeClass("sim_item").addClass("sim_item_disabled");
           drawingrobotTutorialChecks.simulationPaneOpen();
           drawingrobotTutorialChecks.drawingPaneOpen();
       }
@@ -96,16 +97,16 @@ tutorials.drawingRobot2_1 = {
           drawingrobotTutorialChecks.lineAdded();
       }
 
-      if(curr === 7){
+      if(curr === 6){
+        drawingrobotTutorialChecks.checkAnswer(question1);
+      }
+
+      if(curr === 8){
         drawingrobotTutorialChecks.upDownAdded();
       }
     },
 
     onPrev: function(){
-      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialPrevStep", DwenguinoBlockly.tutorialIdSetting + ",step" + curr + ",xml:"+JSON.stringify(xml.innerHTML)));
-      console.log(DwenguinoBlockly.createEvent("tutorialPrevStep", DwenguinoBlockly.tutorialIdSetting + ",step" + curr + ",xml:"+JSON.stringify(xml.innerHTML)));
-
-      var curr = hopscotch.getCurrStepNum();
     },
 
     onClose: function() {
@@ -115,8 +116,34 @@ tutorials.drawingRobot2_1 = {
       DwenguinoBlockly.setDifficultyLevel(0);
     },
 
-    onShow: function(){        
-        $('.hopscotch-bubble-arrow-container').css('visibility', 'hidden');
+    onShow: function(){    
+      var curr = hopscotch.getCurrStepNum();    
+      $('.hopscotch-bubble-arrow-container').css('visibility', 'hidden');
+      $("#sim_menu").show();
+      $("#sim_scenarioTag").css("margin-top","0px"); 
+
+      if( curr === 4 || curr === 5){
+        $("#sim_menu").hide();
+        $("#sim_scenarioTag").css("margin-top","60px"); 
+      }
+
+      if(curr === 5){
+        $("#0")[0].nextSibling.textContent = "";
+        $("#0").after("<img src='./DwenguinoIDE/img/tutorials/drawingrobot/question2_1_c.png'>");
+        
+        $("#1")[0].nextSibling.textContent = "";
+        $("#1").after("<img src='./DwenguinoIDE/img/tutorials/drawingrobot/question2_1_d.png'>");
+
+        $("#2")[0].nextSibling.textContent = "";
+        $("#2").after("<img src='./DwenguinoIDE/img/tutorials/drawingrobot/question2_1_a.png'>");
+
+        $("#3")[0].nextSibling.textContent = "";
+        $("#3").after("<img src='./DwenguinoIDE/img/tutorials/drawingrobot/question2_1_b.png'>");
+
+        $("#myform")[0].lastChild.remove();
+      }
+
+        
     },
 };
 

@@ -2,13 +2,13 @@
  * Implementation of this tour with Hopscotch
  */
 
-tutorials.drawingRobot2_2 = {
-    category: "drawingrobot",
+tutorials.drawingRobot2_2_2 = {
+    category: "drawingrobot2",
     targets: [
-      tutorialTargets.simulatorStopButton
+      tutorialTargets.difficultyMenu
     ],
     placements: [
-      "right",
+      "bottom",
     ],
     nrOfSteps: 4,
     xOffsets: [
@@ -103,6 +103,7 @@ tutorials.drawingRobot2_2 = {
 
     onClose: function() {
       DwenguinoBlockly.setDifficultyLevel(0);
+      $("#tutorial_example").remove();
     },
     onError: function() {
       DwenguinoBlockly.setDifficultyLevel(0);
@@ -115,7 +116,7 @@ tutorials.drawingRobot2_2 = {
 
       if(curr === 2) {
         //show new example image
-        $('#tutorial_example_img').attr("src","./DwenguinoIDE/img/tutorials/drawingrobot/6_2.png");
+        $('#tutorial_example_img').attr("src","./DwenguinoIDE/img/tutorials/drawingrobot/2_2.png");
 
         DwenguinoBlockly.setDifficultyLevel(0);
         var cats = ["catDrawingRobot"]; // catLogic catLoops catMath catText catVariables catDwenguino catSocialRobot catDrawingRobot catComments

@@ -2,15 +2,15 @@
  * Implementation of this tour with Hopscotch
  */
 
-tutorials.drawingRobot6_2 = {
-    category: "drawingrobot",
+tutorials.drawingRobot2_6_2 = {
+    category: "drawingrobot2",
     targets: [
-      tutorialTargets.simulatorStopButton,
+      tutorialTargets.difficultyMenu,
     ],
     placements: [
-      "right",
+      "bottom",
     ],
-    nrOfSteps: 3,
+    nrOfSteps: 2,
     xOffsets: [
       0,
     ],
@@ -94,7 +94,7 @@ tutorials.drawingRobot6_2 = {
     //   }// -------
 
 
-      if(curr === 2){
+      if(curr === 1){
         drawingrobotTutorialChecks.checkExercise6_2_1();
       }
     },
@@ -108,6 +108,7 @@ tutorials.drawingRobot6_2 = {
 
     onClose: function() {
       DwenguinoBlockly.setDifficultyLevel(0);
+      $("#tutorial_example").remove();
     },
     onError: function() {
       DwenguinoBlockly.setDifficultyLevel(0);

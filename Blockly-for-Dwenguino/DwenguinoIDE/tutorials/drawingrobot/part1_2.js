@@ -5,10 +5,10 @@
 tutorials.drawingRobot1_2 = {
     category: "drawingrobot",
     targets: [
-      tutorialTargets.simulatorStopButton,
+      tutorialTargets.difficultyMenu,
     ],
     placements: [
-      "right"
+      "bottom"
     ],
     nrOfSteps: 3,
     xOffsets: [
@@ -105,6 +105,7 @@ tutorials.drawingRobot1_2 = {
 
     onClose: function() {
       DwenguinoBlockly.setDifficultyLevel(0);
+      $("#tutorial_example").remove();
     },
     onError: function() {
       DwenguinoBlockly.setDifficultyLevel(0);

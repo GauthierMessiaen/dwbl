@@ -2,13 +2,13 @@
  * Implementation of this tour with Hopscotch
  */
 
-tutorials.drawingRobot3_1 = {
-    category: "drawingrobot",
+tutorials.drawingRobot2_3_1 = {
+    category: "drawingrobot2",
     targets: [
-      tutorialTargets.simulatorStopButton
+      tutorialTargets.difficultyMenu
     ],
     placements: [
-      "right",
+      "bottom",
     ],
     nrOfSteps: 2,
     xOffsets: [

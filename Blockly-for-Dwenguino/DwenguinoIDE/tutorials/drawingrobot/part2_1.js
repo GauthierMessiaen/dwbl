@@ -7,10 +7,10 @@ tutorials.drawingRobot2_1 = {
     timeStart: 0,
     timeEnd: 0,
     targets: [
-      tutorialTargets.simulatorStopButton
+      tutorialTargets.difficultyMenu
     ],
     placements: [
-      "right"
+      "bottom"
     ],
     nrOfSteps: 9,
     xOffsets: [
@@ -53,19 +53,12 @@ tutorials.drawingRobot2_1 = {
       var blocks = ["drawingrobot_circle", "drawingrobot_rectangle", "drawingrobot_stepper_motor"];
       drawingrobotTutorialChecks.toolboxUpdate(cats,blocks, true,false);
 
-      // start timer
-      this.timeStart = performance.now();
     },
     onEnd: function(){
       var xml = Blockly.Xml.workspaceToDom(DwenguinoBlockly.workspace);
 
       //reset toolbox
       DwenguinoBlockly.setDifficultyLevel(0);
-
-      // end timer
-      this.timeEnd = performance.now();
-      var t = Math.round((this.timeEnd - this.timeStart)/1000,1);
-      console.log("time taken: " + t + " seconden");
 
       DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("endTutorial", DwenguinoBlockly.tutorialId + ",xml:" + JSON.stringify(xml.innerHTML) + ",timeTaken:" + t));
       TutorialMenu.endTutorial();

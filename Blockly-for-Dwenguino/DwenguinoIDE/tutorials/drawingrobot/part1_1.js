@@ -12,9 +12,9 @@ tutorials.drawingRobot1_1 = {
       tutorialTargets.toolbox,  // 4
       tutorialTargets.simulatorStartButton, // 5
       tutorialTargets.simulatorStartButton, // 6
-      tutorialTargets.simulatorStopButton,  // 7
-      tutorialTargets.simulatorStopButton,  // 8
-      tutorialTargets.simulatorStopButton,  // 9
+      tutorialTargets.difficultyMenu,  // 7
+      tutorialTargets.difficultyMenu,  // 8
+      tutorialTargets.difficultyMenu,  // 9
     ],
     placements: [
       "top",    // 0 (intro)
@@ -24,9 +24,9 @@ tutorials.drawingRobot1_1 = {
       "right",  // 4 (select square)
       "bottom", // 5 (change values)
       "left",   // 6 (play)
-      "right",  // 7  (info)
-      "right",  // 8 (select circle)
-      "right",  // 9
+      "bottom",  // 7  (info)
+      "bottom",  // 8 (select circle)
+      "bottom",  // 9
     ],
     nrOfSteps: 14,
     xOffsets: [

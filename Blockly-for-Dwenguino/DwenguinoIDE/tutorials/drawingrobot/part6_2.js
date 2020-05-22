@@ -5,10 +5,10 @@
 tutorials.drawingRobot6_2 = {
     category: "drawingrobot",
     targets: [
-      tutorialTargets.simulatorStopButton,
+      tutorialTargets.difficultyMenu,
     ],
     placements: [
-      "right",
+      "bottom",
     ],
     nrOfSteps: 3,
     xOffsets: [
@@ -108,11 +108,11 @@ tutorials.drawingRobot6_2 = {
 
     onClose: function() {
       DwenguinoBlockly.setDifficultyLevel(0);
+      $("#tutorial_example").remove();
     },
     onError: function() {
       DwenguinoBlockly.setDifficultyLevel(0);
     },
-    
     onShow: function(){        
         $('.hopscotch-bubble-arrow-container').css('visibility', 'hidden');
     },
