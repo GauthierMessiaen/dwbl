@@ -84,13 +84,19 @@ var drawingrobotTutorialChecks = {
     $(".hopscotch-title").text(MSG.tutorials.drawingrobot.error);
     $(".tutorial_error_message").append(MSG.tutorials.drawingrobot.error_requirements);
 
-    DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialCheckFailed", DwenguinoBlockly.tutorialIdSetting + ";step" + curr + ",xml:"+JSON.stringify(xml.innerHTML)));
+    var data = {
+      tutorialname: DwenguinoBlockly.tutorialIdSetting,
+      step: curr,
+      xml: xml.innerHTML,
+    }
+    data = JSON.stringify(data);
+    DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialCheckFailed", data));
 
     if(drawingrobotTutorialChecks.hintCounter >= 3 && data != "") {
       $(".hopscotch-title").text(MSG.tutorials.drawingrobot.hint);
       var hints = "<ul>" + data + "</ul>";
       $(".tutorial_error_message").prepend(hints);
-      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialCheckHints", DwenguinoBlockly.tutorialIdSetting + ";step" + curr + ",xml:"+JSON.stringify(xml.innerHTML)));
+      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialCheckHints", data));
     }
   },
 
@@ -106,12 +112,19 @@ var drawingrobotTutorialChecks = {
     $("#sim_menu").show();
     $("#sim_scenarioTag").css("margin-top","0px"); 
 
+    var data = {
+      tutorialname: DwenguinoBlockly.tutorialIdSetting,
+      step: curr,
+      question: question.name,
+      answer: $('input[name=q1]:checked').val()
+    }
+    data = JSON.stringify(data);
 
     if( !question.checkAnswerBool() ){
       drawingrobotTutorialChecks.failed("");
-      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialQuestionFail", DwenguinoBlockly.tutorialIdSetting + ";step" + curr + "question:" + question.name + "answer:" + $('input[name=q1]:checked').val()));
+      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialQuestionFail", data));
     } else {
-      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialQuestionSuccess", DwenguinoBlockly.tutorialIdSetting + ";step" + curr + "question:" + question.name ));
+      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialQuestionSuccess", data ));
     }
     if(answer){
       $('#'+answer).parent().css("color","red");
@@ -126,7 +139,13 @@ var drawingrobotTutorialChecks = {
     
     if($("#db_infopane").width() === 0){ 
       hopscotch.showStep(curr-1);
-      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialCheckFailed", DwenguinoBlockly.tutorialIdSetting + ";step" + curr + ",xml:"+JSON.stringify(xml.innerHTML)));
+      var data = {
+        tutorialname: DwenguinoBlockly.tutorialIdSetting,
+        step: curr,
+        xml: xml.innerHTML,
+      }
+      data = JSON.stringify(data);
+      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialCheckFailed", data));
     }
   },
   //Check if drawing robot scenario is open
@@ -136,7 +155,13 @@ var drawingrobotTutorialChecks = {
 
     if(!$("#sim_scenario_drawingrobot").prop("checked")){
       hopscotch.showStep(curr-1);
-      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialCheckFailed", DwenguinoBlockly.tutorialIdSetting + ";step" + curr + ",xml:"+JSON.stringify(xml.innerHTML)));
+      var data = {
+        tutorialname: DwenguinoBlockly.tutorialIdSetting,
+        step: curr,
+        xml: xml.innerHTML,
+      }
+      data = JSON.stringify(data);
+      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialCheckFailed", data));
     }
   },
 
@@ -2048,7 +2073,10 @@ var drawingrobotTutorialChecks = {
         moveBlocksDown : stat_move_directions_nr[1],
         moveBlocksLeft : stat_move_directions_nr[2],
         moveBlocksRight : stat_move_directions_nr[3],
+        tutorialname : DwenguinoBlockly.tutorialIdSetting
       }
+      data = JSON.stringify(data);
+      
       
       // console.log("---- STATISTICS ----");
       // console.log("nr of FOR loops: " + stat_loop_for_nr);
@@ -2063,7 +2091,7 @@ var drawingrobotTutorialChecks = {
       if( failed ){
         drawingrobotTutorialChecks.failed(hints);
       } else {
-        DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("exercice6_2_stats", DwenguinoBlockly.tutorialIdSetting + ",data:" + data));
+        DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("exercice6_2_stats", data));
       }
     },
 
@@ -2468,10 +2496,11 @@ var drawingrobotTutorialChecks = {
         whileBlocks : while_blocks,
         ifBlocks: if_blocks,
         mathBlocks: math,
-        xml: xml_text
+        xml: xml_text,
+        tutorialname: DwenguinoBlockly.tutorialIdSetting
       }
 
-      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("exercice7_2_stats", DwenguinoBlockly.tutorialIdSetting + ",data:" + data));
+      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("exercice7_2_stats", data));
     },
   
 }

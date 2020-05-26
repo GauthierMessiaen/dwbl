@@ -221,7 +221,7 @@ var DwenguinoBlockly = {
                ids: event.ids,
              }
              data = JSON.stringify(data);
-             DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("blocklyBlockCreate", data));
+            //  DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("blocklyBlockCreate", data));
            } else if (event.type == "delete"){
              var data = {
                blocktype: event.oldXml.getAttribute("type"),
@@ -229,7 +229,7 @@ var DwenguinoBlockly = {
                ids: event.ids,
              }
              data = JSON.stringify(data);
-             DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("blocklyBlockDelete", data));
+            //  DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("blocklyBlockDelete", data));
            } else if (event.type == "move"){
              var data = {
                oldParentId: event.oldParentId,
@@ -240,7 +240,7 @@ var DwenguinoBlockly = {
                newCoordinate: event.newCoordinate
              }
              data = JSON.stringify(data);
-             DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("blocklyBlockMove", data));
+            //  DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("blocklyBlockMove", data));
            } else if (event.type == "createVar"){
              var data = {
                varType: event.varType,
@@ -248,7 +248,7 @@ var DwenguinoBlockly = {
                varId: event.varId
              }
              data = JSON.stringify(data);
-             DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("blocklyVarCreate", data));
+            //  DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("blocklyVarCreate", data));
            } else if (event.type == "deleteVar"){
              var data = {
                varType: event.varType,
@@ -256,7 +256,7 @@ var DwenguinoBlockly = {
                varId: event.varId
              }
              data = JSON.stringify(data);
-             DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("blocklyVarDelete", data));
+            //  DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("blocklyVarDelete", data));
            } else if (event.type == Blockly.Events.VAR_RENAME){
              var data = {
                oldName: event.oldName,
@@ -264,7 +264,7 @@ var DwenguinoBlockly = {
                varId: event.varId
              }
              data = JSON.stringify(data);
-             DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("blocklyVarRename", data));
+            //  DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("blocklyVarRename", data));
            } else if (event.type == Blockly.Events.UI){
              var data = {
                element: event.element,
@@ -272,7 +272,7 @@ var DwenguinoBlockly = {
                newValue: event.newValue
              }
              data = JSON.stringify(data);
-             DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("blocklyUI", data));
+            //  DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("blocklyUI", data));
            } else if (event.type == Blockly.Events.CHANGE){
              var data = {
                element: event.element,
@@ -281,11 +281,11 @@ var DwenguinoBlockly = {
                newValue: event.newValue
              };
              data = JSON.stringify(data);
-             DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("blocklyChange", data));
+            //  DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("blocklyChange", data));
            } else if (event.type == Blockly.Events.UNDO){
              console.log(event);
              var data = {};
-              DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("undo", data));
+              // DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("undo", data));
            }
          });
 

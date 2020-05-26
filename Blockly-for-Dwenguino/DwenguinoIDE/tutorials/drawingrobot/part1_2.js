@@ -79,13 +79,24 @@ tutorials.drawingRobot1_2 = {
       var xml = Blockly.Xml.workspaceToDom(DwenguinoBlockly.workspace);
       DwenguinoBlockly.setDifficultyLevel(0);
       $("#tutorial_example").remove();
-      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("endTutorial", DwenguinoBlockly.tutorialId+ ",xml:"+JSON.stringify(xml.innerHTML)));
+      var data = {
+        tutorialname: DwenguinoBlockly.tutorialIdSetting,
+        xml: xml.innerHTML,
+      }
+      data = JSON.stringify(data);
+      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("endTutorial", data));
       TutorialMenu.endTutorial();
     },
     onNext: function(){
       var curr = hopscotch.getCurrStepNum();
       var xml = Blockly.Xml.workspaceToDom(DwenguinoBlockly.workspace);
-      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialNextStep", DwenguinoBlockly.tutorialIdSetting + ",step" + curr + ",xml:"+JSON.stringify(xml.innerHTML)));
+      var data = {
+        tutorialname: DwenguinoBlockly.tutorialIdSetting,
+        step: curr,
+        xml: xml.innerHTML,
+      }
+      data = JSON.stringify(data);
+      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialNextStep", data ));
       // console.log(DwenguinoBlockly.createEvent("tutorialNextStep", DwenguinoBlockly.tutorialIdSetting));
       
       
@@ -99,8 +110,13 @@ tutorials.drawingRobot1_2 = {
     },
 
     onPrev: function(){
-      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialPrevStep", DwenguinoBlockly.tutorialIdSetting));
-      console.log(DwenguinoBlockly.createEvent("tutorialPrevStep", DwenguinoBlockly.tutorialIdSetting));
+      var data = {
+        tutorialname: DwenguinoBlockly.tutorialIdSetting,
+        step: curr,
+      }
+      data = JSON.stringify(data);
+      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialPrevStep", data ));
+      // console.log(DwenguinoBlockly.createEvent("tutorialPrevStep", DwenguinoBlockly.tutorialIdSetting));
     },
 
     onClose: function() {
