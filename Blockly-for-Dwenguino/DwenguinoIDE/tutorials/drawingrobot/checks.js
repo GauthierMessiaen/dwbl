@@ -69,7 +69,7 @@ var drawingrobotTutorialChecks = {
     return loop;
   },
 
-  failed: function(data) {
+  failed: function(hints) {
     var curr = hopscotch.getCurrStepNum();
     var xml = Blockly.Xml.workspaceToDom(DwenguinoBlockly.workspace);
   
@@ -92,9 +92,9 @@ var drawingrobotTutorialChecks = {
     data = JSON.stringify(data);
     DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialCheckFailed", data));
 
-    if(drawingrobotTutorialChecks.hintCounter >= 3 && data != "") {
+    if(drawingrobotTutorialChecks.hintCounter >= 3 && hints != "") {
       $(".hopscotch-title").text(MSG.tutorials.drawingrobot.hint);
-      var hints = "<ul>" + data + "</ul>";
+      var hints = "<ul>" + hints + "</ul>";
       $(".tutorial_error_message").prepend(hints);
       DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialCheckHints", data));
     }
