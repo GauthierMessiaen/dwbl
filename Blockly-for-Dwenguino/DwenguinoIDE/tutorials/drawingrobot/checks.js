@@ -586,7 +586,6 @@ var drawingrobotTutorialChecks = {
       if(type === "drawingrobot_line"){
         var x = blocks[i].children[0].textContent;
         var y = blocks[i].children[1].textContent;
-        console.log(x,y);
         if( (x != 230 || y != 40) && (x != 230 || y != 80) && (x != 190 || y != 40) && (x != 190 || y != 80)){
           failed = true;
         }

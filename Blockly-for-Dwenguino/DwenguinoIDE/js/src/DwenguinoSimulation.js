@@ -650,7 +650,7 @@ var DwenguinoSimulation = {
     // To do so we execute the updateScenario() function of the current scenario delay/speedDelay times
     // with an interval of speedDelay.
     if (DwenguinoSimulation.delayStepsTaken < DwenguinoSimulation.delayStepsToTake){
-      console.log("delay");
+      // console.log("delay");
       // Update the scenario View
       DwenguinoSimulation.board = DwenguinoSimulation.currentScenario.updateScenario(DwenguinoSimulation.board);
       DwenguinoSimulation.delayStepsTaken++;
@@ -658,7 +658,7 @@ var DwenguinoSimulation = {
         DwenguinoSimulation.performDelayLoop(returnCallback);
       }, DwenguinoSimulation.speedDelay);
     } else {
-      console.log("end delay");
+      // console.log("end delay");
       setTimeout(returnCallback, DwenguinoSimulation.delayRemainingAfterSteps);
     }
   },

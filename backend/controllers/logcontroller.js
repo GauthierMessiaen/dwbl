@@ -26,7 +26,6 @@ exports.event = function(req, res) {
       //   res.send("Logitem saved to database");
       // })
       .catch(err => {
-        console.log("test");
         console.debug(err);
         res.status(400).send("Unable to save to database");
       });

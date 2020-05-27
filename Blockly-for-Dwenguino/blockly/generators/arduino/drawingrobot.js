@@ -51,7 +51,6 @@ Blockly.Arduino['drawingrobot_stepper_motor'] = function(block) {
 
   var value_channel = Blockly.Arduino.valueToCode(block, 'channel', Blockly.Arduino.ORDER_ATOMIC);
   var value_steps = Blockly.Arduino.valueToCode(block, 'step', Blockly.Arduino.ORDER_ATOMIC);
-  console.log(value_steps);
   var code = ''
   + 'bool direction = (' + value_steps + ' >= 0); // true = positive, false = negative\n'
   + 'int startSteps = steps' + value_channel + ';\n'

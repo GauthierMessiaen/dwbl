@@ -85,10 +85,8 @@ var DwenguinoEventLogger = {
             };
             // console.log(eventToRecord);
             if (DwenguinoEventLogger.sessionId !== undefined){
-                console.log("------------------")
-                console.log("event:");
-                console.log(eventToRecord);
-                console.log("------------------")
+                // console.log("event:");
+                // console.log(eventToRecord);
             $.ajax({
                 type: "POST",
                 url: window.serverUrl + "/logging/event",
