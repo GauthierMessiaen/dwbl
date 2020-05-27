@@ -37,7 +37,7 @@ tutorials.drawingRobot2_7_2 = {
         });
       }
     },
-    id: "part7_2",
+    id: "v2_part7_2",
     label: MSG.tutorials.drawingrobot['part7_2'].label,
     onStart: function(){
       //Load blocks with xml file

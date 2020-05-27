@@ -77,7 +77,7 @@ tutorials.drawingRobot2_1_1 = {
         });
       }
     },
-    id: "part1_1",
+    id: "v2_part1_1",
     label: MSG.tutorials.drawingrobot['part1_1'].label,
     onStart: function(){
       DwenguinoBlockly.loadFileXmlIntoWorkspace('<xml><block type="setup_loop_structure" id="Pk`h)EM}qg!)OyIV5]4P" x="10" y="10"></block></xml>');
