@@ -322,7 +322,7 @@ var DwenguinoBlockly = {
       $("#db_blockly").width(newStateArray[0]);
       this.simButtonStateClicked = newStateArray[2];
       DwenguinoBlockly.simulatorState = newStateArray[1];
-      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("simButtonStateClicked", DwenguinoBlockly.simulatorState));
+      // DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("simButtonStateClicked", DwenguinoBlockly.simulatorState));
       DwenguinoBlockly.onresize();
       Blockly.svgResize(DwenguinoBlockly.workspace);
     },

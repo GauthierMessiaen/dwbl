@@ -96,7 +96,7 @@ tutorials.drawingRobot1_2 = {
         xml: xml.innerHTML,
       }
       data = JSON.stringify(data);
-      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialNextStep", data ));
+      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("tutorialNextStep", DwenguinoBlockly.tutorialIdSetting ));
       // console.log(DwenguinoBlockly.createEvent("tutorialNextStep", DwenguinoBlockly.tutorialIdSetting));
       
       
