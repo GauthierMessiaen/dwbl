@@ -3,7 +3,10 @@ const bcrypt = require('bcrypt');
 
 exports.new = function(req, res) {
   let mongoose = require('mongoose');
-  mongoose.connect('mongodb://localhost/dwenguinoblockly', { useNewUrlParser: true });
+  // mongoose.connect('mongodb://localhost/dwenguinoblockly', { useNewUrlParser: true });
+  var dev_db_url = 'mongodb+srv://gauthier:Neaissem135@cluster0-fistj.azure.mongodb.net/dwbl?retryWrites=true&w=majority'
+  mongoose.connect(dev_db_url, { useNewUrlParser: true });
+  
   let db = mongoose.connection;
   const rounds = 10;
 
@@ -50,7 +53,8 @@ exports.new = function(req, res) {
 
 exports.update = function(req, res) {
   let mongoose = require('mongoose');
-  mongoose.connect('mongodb://localhost/dwenguinoblockly', { useNewUrlParser: true });
+  var dev_db_url = 'mongodb+srv://gauthier:Neaissem135@cluster0-fistj.azure.mongodb.net/dwbl?retryWrites=true&w=majority'
+  mongoose.connect(dev_db_url, { useNewUrlParser: true });
   let db = mongoose.connection;
 
   db.collection('authentications').findOne({username: req.body.userId})
@@ -94,7 +98,8 @@ exports.update = function(req, res) {
 
 exports.authenticate = function(req, res) {
   let mongoose = require('mongoose');
-  mongoose.connect('mongodb://localhost/dwenguinoblockly', { useNewUrlParser: true });
+  var dev_db_url = 'mongodb+srv://gauthier:Neaissem135@cluster0-fistj.azure.mongodb.net/dwbl?retryWrites=true&w=majority'
+  mongoose.connect(dev_db_url, { useNewUrlParser: true });
   let db = mongoose.connection;
 
   db.collection('authentications').findOne({username: req.body.userId})

@@ -4,8 +4,8 @@ if (!window.dwenguinoBlocklyServer) {
   dwenguinoBlocklyServer = false;
 };
 
-window.serverUrl = 'http://localhost:12032';
-// window.serverUrl = 'https://dwbl.herokuapp.com';
+// window.serverUrl = 'http://localhost:12032';
+window.serverUrl = 'https://dwbl.herokuapp.com';
 
 var DwenguinoBlockly = {
     simButtonStateClicked: false,
