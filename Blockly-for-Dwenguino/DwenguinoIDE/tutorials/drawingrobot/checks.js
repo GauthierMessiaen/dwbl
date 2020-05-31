@@ -1083,7 +1083,7 @@ var drawingrobotTutorialChecks = {
     },
 
   // ---------- Part 4_2 ----------
-  checkExercise4_2: function() {
+  checkExercise4_2: function(extra_check) {
     var xml = Blockly.Xml.workspaceToDom(DwenguinoBlockly.workspace);
     var hints = "";
 
@@ -1184,27 +1184,34 @@ var drawingrobotTutorialChecks = {
     }
 
 
-
-    // check if: input values are correct
-    var a = $("#varA");
-    var b = $("#varB");
-    var c = $("#varC");
-    var failedA = (a.val() !== "20");
-    var failedB = (b.val() !== "10");
-    var failedC = (c.val() !== "200");
+    var failedA = false;
+    var failedB = false;
+    var failedC = false;
+    if(extra_check){
+      // check if: input values are correct
+      var a = $("#varA");
+      var b = $("#varB");
+      var c = $("#varC");
+      failedA = (a.val() !== "20");
+      failedB = (b.val() !== "10");
+      failedC = (c.val() !== "200");
+    }
+    
     
     if( failed || failedA || failedB || failedC ){
       if(failedA || failedB || failedC) hints = hints.concat( MSG.tutorials.drawingrobot['part4_2'].hints[9] );
       
       drawingrobotTutorialChecks.failed(hints);
 
-      $("#varA").val(a.val());
-      $("#varB").val(b.val());
-      $("#varC").val(c.val());
+      if(extra_check){
+        $("#varA").val(a.val());
+        $("#varB").val(b.val());
+        $("#varC").val(c.val());
 
-      if (failedA) $("#varA").parent().css("color","red");
-      if (failedB) $("#varB").parent().css("color","red");
-      if (failedC) $("#varC").parent().css("color","red"); 
+        if (failedA) $("#varA").parent().css("color","red");
+        if (failedB) $("#varB").parent().css("color","red");
+        if (failedC) $("#varC").parent().css("color","red");
+      }
     }
 
     

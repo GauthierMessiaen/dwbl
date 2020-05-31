@@ -100,7 +100,7 @@ tutorials.drawingRobot4_2 = {
       
       
       if(curr === 2){
-        drawingrobotTutorialChecks.checkExercise4_2();
+        drawingrobotTutorialChecks.checkExercise4_2(false);
       }
 
     },

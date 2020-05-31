@@ -105,7 +105,7 @@ tutorials.drawingRobot6_2 = {
     //   }// -------
 
 
-      if(curr === 2){
+      if(curr === 1){
         drawingrobotTutorialChecks.checkExercise6_2_1();
       }
     },

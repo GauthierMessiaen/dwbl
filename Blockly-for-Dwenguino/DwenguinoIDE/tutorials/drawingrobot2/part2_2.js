@@ -136,12 +136,12 @@ tutorials.drawingRobot2_2_2 = {
         $('#tutorial_example_img').attr("src","./DwenguinoIDE/img/tutorials/drawingrobot/2_2.png");
 
         DwenguinoBlockly.setDifficultyLevel(0);
-        var cats = ["catDrawingRobot"]; // catLogic catLoops catMath catText catVariables catDwenguino catSocialRobot catDrawingRobot catComments
-        var blocks = [];
-        drawingrobotTutorialChecks.toolboxUpdate(cats,blocks, true,false);
-        // setTimeout(function(){
-
-        // },40);
+        setTimeout( function(){
+          var cats = ["catDrawingRobot"]; // catLogic catLoops catMath catText catVariables catDwenguino catSocialRobot catDrawingRobot catComments
+          var blocks = [];
+          drawingrobotTutorialChecks.toolboxUpdate(cats,blocks, true,false);
+        }, 40);
+        
       }
     },
 };

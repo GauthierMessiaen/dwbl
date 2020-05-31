@@ -10,7 +10,7 @@ tutorials.drawingRobot2_1_2 = {
     placements: [
       "bottom"
     ],
-    nrOfSteps: 3,
+    nrOfSteps: 5,
     xOffsets: [
       0,
     ],
@@ -27,11 +27,21 @@ tutorials.drawingRobot2_1_2 = {
     },
     // Create the steps array dynamically by using the different arrays
     initSteps: function(){
+      var question1Text = MSG.tutorials.drawingrobot['part1_2'].questions[0];
+      var answer1_a = new TutorialAnswer(0,MSG.tutorials.drawingrobot['part1_2'].answers[0]);
+      var answer1_b = new TutorialAnswer(1,MSG.tutorials.drawingrobot['part1_2'].answers[1]);
+      var answer1_c = new TutorialAnswer(2,MSG.tutorials.drawingrobot['part1_2'].answers[2]);
+      var answer1_d = new TutorialAnswer(3,MSG.tutorials.drawingrobot['part1_2'].answers[3]);
+      var answers1 = [answer1_a, answer1_b, answer1_c, answer1_d];
+      question1 = new TutorialMultipleChoiceQuestion("q1", question1Text, answers1, answer1_c);
+      MSG.tutorials.drawingrobot['part1_2'].stepContents2[3] = question1.getHtml();
+
+
       var i;
       for (i = 0 ; i < this.nrOfSteps ; i++){
         this.steps.push({
-          title: MSG.tutorials.drawingrobot['part1_2'].stepTitles[i],
-          content: MSG.tutorials.drawingrobot['part1_2'].stepContents[i],
+          title: MSG.tutorials.drawingrobot['part1_2'].stepTitles2[i],
+          content: MSG.tutorials.drawingrobot['part1_2'].stepContents2[i],
           target: this.targets[0],
           placement: this.placements[0],
           showCloseButton:"true",
@@ -105,7 +115,14 @@ tutorials.drawingRobot2_1_2 = {
       }
 
       if(curr === 2 ){
-        drawingrobotTutorialChecks.checkExercise1();
+        drawingrobotTutorialChecks.checkExercise1(); 
+      }
+      if(curr === 3 ){
+        DwenguinoBlockly.loadFileXmlIntoWorkspace('<xml xmlns="https://developers.google.com/blockly/xml"><block type="setup_loop_structure" id="Pk`h)EM}qg!)OyIV5]4P" x="10" y="10"><statement name="SETUP"><block type="drawingrobot_circle" id="HJ4O1j|c[:`oh1.5RB$("><value name="radius"><block type="math_number" id="X+$rH)VUhprV$b`vw:N_"><field name="NUM">10</field></block></value><next><block type="drawingrobot_rectangle" id="f7TZIuGFwQ^t!CVid;u_"><value name="width"><block type="math_number" id="zt$E8S{60:]XvlDt+9XJ"><field name="NUM">10</field></block></value><value name="height"><block type="math_number" id=".OwtnKOiOOv..z]uf~kU"><field name="NUM">10</field></block></value></block></next></block></statement></block></xml>');
+      }
+      if(curr === 4 ){
+        drawingrobotTutorialChecks.checkAnswer(question1);
+        
       }
     },
 
@@ -130,6 +147,11 @@ tutorials.drawingRobot2_1_2 = {
 
     onShow: function(){        
         $('.hopscotch-bubble-arrow-container').css('visibility', 'hidden');
+
+        var curr = hopscotch.getCurrStepNum();
+        if(curr === 3){
+          $("#myform")[0].lastChild.remove();
+        }
     },
 };
 
