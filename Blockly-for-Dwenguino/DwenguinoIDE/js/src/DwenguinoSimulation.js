@@ -482,7 +482,7 @@ var DwenguinoSimulation = {
   */
 
   handleSimulationStop: function(){
-    // DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("simStop", ""));
+    DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("simStop", ""));
     DwenguinoSimulation.isSimulationRunning = false;
     DwenguinoSimulation.isSimulationPaused = false;
     DwenguinoSimulation.setButtonsStop();
@@ -1328,75 +1328,6 @@ var DwenguinoSimulation = {
       }
     },
 
-
-  //  stepMotorRotate: function(channel, step) {
-  //   var stdDelay = 50; // how fast it rotates
-  //   var stepsLeft = Math.abs(step);
-  //   var direction = 0;
-  //   direction = (step > 0) ? 1 : -1; //rotate right or left
-  //   var id = channel-1;
-  //   var delay = 3000/(stepsLeft);
-  //   //variable to keep track of the running timeouts for the current rotations
-  //   if (typeof DwenguinoSimulation.timeoutStepMotors === 'undefined') {
-  //     DwenguinoSimulation.timeoutStepMotors = [undefined,undefined];
-  //   }
-  //   //variable to keep track of the timeouts for the following rotations and keep them in order
-  //   if (typeof DwenguinoSimulation.timeoutQueue === 'undefined') {
-  //     DwenguinoSimulation.timeoutQueue = [[],[]];
-  //   }
-
-
-  //   var timeoutStepMotor = setInterval(function() {
-
-  //     //if there are no other rotations at the moment, start and keep rotating untill it's finished
-  //     if( (typeof DwenguinoSimulation.timeoutStepMotors[id] === 'undefined') || (DwenguinoSimulation.timeoutStepMotors[id] === timeoutStepMotor)){
-  //       DwenguinoSimulation.timeoutStepMotors[id] = timeoutStepMotor;
-  //       if(stepsLeft > 0){
-  //         DwenguinoSimulation.board.motorSteps[id] = DwenguinoSimulation.board.motorSteps[id] + direction;
-  //         stepsLeft--;
-  //       } else {
-  //         clearInterval(timeoutStepMotor);
-  //         if(DwenguinoSimulation.timeoutQueue[id].length > 0){
-  //           DwenguinoSimulation.timeoutStepMotors[id] = DwenguinoSimulation.timeoutQueue[id].shift();
-  //         } else {
-  //           DwenguinoSimulation.timeoutStepMotors[id] = undefined;
-  //         }
-
-  //       }
-  //     } else { //If there are already rotations happening, wait untill they are finished
-  //       if(!DwenguinoSimulation.timeoutQueue[id].includes(timeoutStepMotor)){
-  //         DwenguinoSimulation.timeoutQueue[id].push(timeoutStepMotor);
-  //       }
-  //     }
-  //   }, delay);
-  // },
-
-
-  // stepMotorRotate: function(channel, step) {
-  //   var id = channel-1;
-
-  //   // Check if point is still within bounds.
-  //   var lengths = DwenguinoSimulationScenarioDrawingRobot.prototype.getCurrentLength();
-  //   lengths[id] += step;
-  //   var position = DwenguinoSimulationScenarioDrawingRobot.prototype.getPosition(lengths[0],lengths[1]);
-
-  //   console.log(position);
-  //   if(position[0] >= 20 && position[0] <= 400 && position[1] >= 40 && position[1] <= 537){
-  //     window.stepMotorError1 = false;
-  //     console.log("ok");
-  //   } else { // drawing is out of bounds -> alert user & stop simulation
-  //     if(window.stepMotorError1){
-  //       console.log("timeout");
-  //         alert(MSG.bounds);
-  //         DwenguinoSimulation.handleSimulationStop();
-  //     } else {
-  //       console.log("fail");
-  //       window.stepMotorError1 = true;
-  //     }
-  //   }
-  //   // Move the stepper motor
-  //   DwenguinoSimulation.board.motorSteps[id] += step;
-  // },
   stepmotorQueue: [],
   servoAngleQueue: [],
   colorQueue: [],
@@ -1453,70 +1384,6 @@ var DwenguinoSimulation = {
     }
   },
 
-  // stepMotorRotateBoth: function(step1,step2) {
-
-  //   var lengths = DwenguinoSimulation.currentScenario.getCurrentLength();
-  //   lengths[0] += step1;
-  //   lengths[1] += step2;
-  //   var startPosition = DwenguinoSimulation.currentScenario.getCurrentPosition();
-  //   var position = DwenguinoSimulation.currentScenario.getPosition(lengths[0],lengths[1]);
-
-  //   // Calculate all the points inbetween the start and end point
-  //   var points = DwenguinoSimulation.bresenham(startPosition[0],startPosition[1],position[0],position[1]);
-  //   console.log(points);
-  //   // change the points to the length of the lines.
-  //   var lengthQueues = points.map(x => DwenguinoSimulation.currentScenario.getLength(x[0],x[1]));
-
-
-  //   if(position[0] < 20 || position[0] > 400 || position[1] < 40 || position[1] > 537){
-  //     if(!window.stepMotorError){
-  //       alert(MSG.bounds);
-  //       DwenguinoSimulation.handleSimulationStop();
-  //       window.stepMotorError = true;
-  //     }
-  //   } else {
-  //     this.stepmotorQueue = this.stepmotorQueue.concat(lengthQueues);
-  //     // DwenguinoSimulation.stepMotorRotate(1,step1);
-  //     // DwenguinoSimulation.stepMotorRotate(2,step2);
-  //   }
-  // },
-
-  // stepMotorRotateBoth: function(step1,step2) {
-  //   var lengths = DwenguinoSimulationScenarioDrawingRobot.prototype.getCurrentLength();
-  //   lengths[0] += step1;
-  //   lengths[1] += step2;
-  //   var position = DwenguinoSimulationScenarioDrawingRobot.prototype.getPosition(lengths[0],lengths[1]);
-
-
-  //   if(position[0] < 20 || position[0] > 400 || position[1] < 40 || position[1] > 537){
-  //     if(!window.stepMotorError){
-  //       alert(MSG.bounds);
-  //       DwenguinoSimulation.handleSimulationStop();
-  //       window.stepMotorError = true;
-  //     }
-  //   } else {
-  //     DwenguinoSimulation.stepMotorRotate(1,step1);
-  //     DwenguinoSimulation.stepMotorRotate(2,step2);
-  //   }
-  // },
-
-  /*stopStepmotors: function(){
-    if (typeof DwenguinoSimulation.timeoutStepMotors !== 'undefined') {
-      for (var id = 0; id < DwenguinoSimulation.timeoutStepMotors.length; id++){
-        console.log("stop: id(" + id + ") - timeoutID(" + DwenguinoSimulation.timeoutStepMotors[id] + ")");
-        (typeof DwenguinoSimulation.timeoutStepMotors[id] !== 'undefined') && clearInterval(DwenguinoSimulation.timeoutStepMotors[id]);
-        DwenguinoSimulation.timeoutStepMotors[id] = undefined;
-      }
-    }
-    if (typeof DwenguinoSimulation.timeoutQueue !== 'undefined') {
-      while(DwenguinoSimulation.timeoutQueue[0].length > 0){
-        clearInterval(DwenguinoSimulation.timeoutQueue[0].shift());
-      }
-      while(DwenguinoSimulation.timeoutQueue[1].length > 0){
-        clearInterval(DwenguinoSimulation.timeoutQueue[1].shift());
-      }
-    }
-  },*/
   drawRobotCurrentPosition: function(){
     var dw = new DwenguinoSimulationScenarioDrawingRobot();
 
@@ -1584,25 +1451,6 @@ var DwenguinoSimulation = {
       y += 40;
     }
 
-    // var position = DwenguinoSimulationScenarioDrawingRobot.prototype.getCurrentPosition();
-    // var steps = DwenguinoSimulationScenarioDrawingRobot.prototype.bresenham(position[0], position[1], x, y);
-
-    // setTimeout(function() {
-    //   while(steps.length > 0){
-    //     var p = steps.shift();
-    //     console.log(p);
-    //     var currentLength = DwenguinoSimulationScenarioDrawingRobot.prototype.getCurrentLength();
-    //     var newlength = DwenguinoSimulationScenarioDrawingRobot.prototype.getLength(p[0],p[1]);
-    //     var L = Math.round(newlength[0] - currentLength[0],0);
-    //     var R = Math.round(newlength[1] - currentLength[1],0);
-
-    //     DwenguinoSimulation.stepMotorRotate(1,L);
-    //     DwenguinoSimulation.stepMotorRotate(2,R);
-    //     DwenguinoSimulation.board = DwenguinoSimulation.currentScenario.updateScenario(DwenguinoSimulation.board);
-    //   }
-    // }, DwenguinoSimulation.speedDelay);
-
-
     // Find the starting position
     var pStart =  DwenguinoSimulation.drawRobotCurrentPosition();
 
@@ -1624,26 +1472,6 @@ var DwenguinoSimulation = {
       this.servoAngleQueue.push(angle);
       this.colorQueue.push(color);
     }
-    // //calculate the new length
-    // var LRNew = DwenguinoSimulation.currentScenario.getLength(x,y);
-    // var LNew = LRNew[0];
-    // var RNew = LRNew[1];
-
-    // //calculate the old length
-    // var dw = new DwenguinoSimulationScenarioDrawingRobot();
-    // var LR = dw.line.lengthBase;
-    // var L = LR[0];
-    // var R = LR[1];
-
-
-    // //calculate the necesary steps to go from old to new length
-    // stepsL = Math.round(LNew-L,0);
-    // stepsR = Math.round(RNew-R,0);
-
-    // DwenguinoSimulation.stepMotorRotateBoth(stepsL, stepsR);
-    // // DwenguinoSimulation.stepMotorRotate(1,stepsL);
-    // // DwenguinoSimulation.stepMotorRotate(2,stepsR);
-
   },
 
   drawRobotCircle: function(radius) {
@@ -1698,29 +1526,6 @@ var DwenguinoSimulation = {
       this.servoAngleQueue.push(angle);
       this.colorQueue.push(color);
     }
-    // while(stackL.length > 0 || stackR.length > 0){
-    //   // console.log("move (" + stackL[0] + "," + stackR[0] + ")");
-
-    //   var rotateL = ((stackL.length > 0) ? stackL.shift(): 0);
-    //   var rotateR = ((stackR.length > 0) ? stackR.shift(): 0);
-    //   DwenguinoSimulation.stepMotorRotateBoth(rotateL,rotateR);
-
-    //   // (stackL.length > 0) && DwenguinoSimulation.stepMotorRotate(1,stackL.shift());
-    //   // (stackR.length > 0) && DwenguinoSimulation.stepMotorRotate(2,stackR.shift());
-    //   // DwenguinoSimulation.board = DwenguinoSimulation.currentScenario.updateScenario(DwenguinoSimulation.board);
-    // }
-
-    //Make sure that the circle end on the same position as is started
-    // LR = DwenguinoSimulation.currentScenario.getLength(position[0],position[1]);
-    // LRNew = DwenguinoSimulation.currentScenario.getLength(xCircle+radius,yCircle);
-    // var L = LRNew[0] - LR[0];
-    // var R = LRNew[1] - LR[1];
-
-    // this.stepmotorQueue.push([L,R]);
-    // DwenguinoSimulation.stepMotorRotateBoth(L,R);
-    // DwenguinoSimulation.stepMotorRotate(1,L);
-    // DwenguinoSimulation.stepMotorRotate(2,R);
-
   },
 
   drawRobotRectangle: function(width, height) {

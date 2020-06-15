@@ -2070,7 +2070,7 @@ MSG.tutorials.drawingrobot['part7_1'].stepContents = [
     + "Sleep dit blok 4 keer naar <b>Zet klaar</b> en plaats het elke keer onder het volgende <b>// vierkant tekenen</b> blok.",
   "Goed zo, als je de code nu uittest, zou dit exact hetzelfde resultaat moeten geven als in het begin. Maar nu is de code veel korter en leesbaarder.",
   "Aan sommige functies kan je waarden meegeven en sommige functies kunnen ook een waarde terugsturen. Dit zullen we uittesten in de volgende oefening.",
-  "In deze oefening zullen we een functie maken die 2 getallen meekrijgt. Dit zijn de punten die een leerling heeft gekrgen op een toets."
+  "In deze oefening zullen we een functie maken die 2 getallen meekrijgt. Dit zijn de punten die een leerling heeft gekregen op een toets."
     + "Het probleem is dat de punten niet altijd op 10 of 100 staan en ze dus moeten omgezet worden zodat we de punten in procenten weten.<br>"
     + "We zullen deze functie dan uittesten door het resultaat op het scherm van de robot te tonen.",
   "<div class=\"tutorial_error_message\"></div>"

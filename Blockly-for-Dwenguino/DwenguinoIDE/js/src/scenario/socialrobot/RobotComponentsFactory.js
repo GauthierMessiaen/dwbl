@@ -66,7 +66,7 @@ RobotComponentsFactory.prototype.removeRobotComponent = function(type){
   * Add a new servo to the simulation container.
   */
  RobotComponentsFactory.prototype.addServo = function(draw = true, offsetLeft = 5, offsetTop = 5, state = StatesEnum.PLAIN, width = 100, height = 50, image = this.robot.imgServo, classes = 'sim_canvas servo_canvas'){
-    // DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("addRobotComponent", TypesEnum.SERVO));
+    DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("addRobotComponent", TypesEnum.SERVO));
 
     this.incrementNumberOf(TypesEnum.SERVO);
     var id = this.robot.numberOf[TypesEnum.SERVO];
@@ -101,7 +101,7 @@ RobotComponentsFactory.prototype.removeRobotComponent = function(type){
   * Remove the most recent created servo from the simulation container.
   */
  RobotComponentsFactory.prototype.removeServo = function(){
-  // DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("removeRobotComponent", TypesEnum.SERVO));
+  DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("removeRobotComponent", TypesEnum.SERVO));
 
   var id = this.robot.numberOf[TypesEnum.SERVO];
   $("#sim_servo"+ id + "").remove();
@@ -114,7 +114,7 @@ RobotComponentsFactory.prototype.removeRobotComponent = function(type){
  * Add a new LED to the simulation container.
  */
 RobotComponentsFactory.prototype.addLed = function(draw = true, offsetLeft = 5, offsetTop = 5, onColor = 'yellow'){
-  // DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("addRobotComponent", TypesEnum.LED));
+  DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("addRobotComponent", TypesEnum.LED));
   
   this.incrementNumberOf(TypesEnum.LED);
   var i = this.robot.numberOf[TypesEnum.LED];
@@ -148,7 +148,7 @@ RobotComponentsFactory.prototype.addLed = function(draw = true, offsetLeft = 5, 
  * Remove the most recent created LED from the simulation container.
  */
 RobotComponentsFactory.prototype.removeLed = function(){
-  // DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("removeRobotComponent", TypesEnum.LED));
+  DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("removeRobotComponent", TypesEnum.LED));
   var id = this.robot.numberOf[TypesEnum.LED];
   $("#sim_led"+ id + "").remove();
 
@@ -160,7 +160,7 @@ RobotComponentsFactory.prototype.removeLed = function(){
  * Add a new PIR sensor to the simulation container.
  */
 RobotComponentsFactory.prototype.addPir = function(draw = true, offsetLeft = 5, offsetTop = 5){
-  // DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("addRobotComponent", TypesEnum.PIR));
+  DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("addRobotComponent", TypesEnum.PIR));
   
   this.incrementNumberOf(TypesEnum.PIR);
   var id = this.robot.numberOf[TypesEnum.PIR];
@@ -198,7 +198,7 @@ RobotComponentsFactory.prototype.addPir = function(draw = true, offsetLeft = 5, 
  * Remove the most recent created PIR sensor from the simulation container.
  */
 RobotComponentsFactory.prototype.removePir = function(){
-  // DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("removeRobotComponent", TypesEnum.PIR));
+  DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("removeRobotComponent", TypesEnum.PIR));
   var id = this.robot.numberOf[TypesEnum.PIR];
   $('#sim_pir'+ id).remove();
 
@@ -215,7 +215,7 @@ RobotComponentsFactory.prototype.removePir = function(){
  * Add a new SONAR sensor to the simulation container.
  */
 RobotComponentsFactory.prototype.addSonar = function(draw = true, offsetLeft = 5, offsetTop = 5){
-  // DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("addRobotComponent", TypesEnum.SONAR));
+  DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("addRobotComponent", TypesEnum.SONAR));
   
   this.incrementNumberOf(TypesEnum.SONAR);
   var id = this.robot.numberOf[TypesEnum.SONAR];
@@ -271,7 +271,7 @@ RobotComponentsFactory.prototype.changeSonarDistance = function(value, id){
  * Remove the most recent created SONAR sensor from the simulation container.
  */
 RobotComponentsFactory.prototype.removeSonar = function(){
-  // DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("removeRobotComponent", TypesEnum.SONAR));
+  DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("removeRobotComponent", TypesEnum.SONAR));
   var id = this.robot.numberOf[TypesEnum.SONAR];
   $('#sim_sonar'+ id).remove();
 
@@ -366,7 +366,7 @@ RobotComponentsFactory.prototype.removeLcd = function(){
  * Add a new PIR sensor to the simulation container.
  */
 RobotComponentsFactory.prototype.addButton = function(draw = true, offsetLeft = 5, offsetTop = 5){
-  // DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("addRobotComponent", TypesEnum.BUTTON));
+  DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("addRobotComponent", TypesEnum.BUTTON));
   this.incrementNumberOf(TypesEnum.BUTTON);
   var id = this.robot.numberOf[TypesEnum.BUTTON];
   var buttonId = 'sim_button_canvas' + id;
@@ -403,7 +403,7 @@ RobotComponentsFactory.prototype.addButton = function(draw = true, offsetLeft = 
  * Remove the most recent created PIR sensor from the simulation container.
  */
 RobotComponentsFactory.prototype.removeButton = function(){
-  // DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("removeRobotComponent", TypesEnum.BUTTON));
+  DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("removeRobotComponent", TypesEnum.BUTTON));
   var id = this.robot.numberOf[TypesEnum.PIR];
   $('#sim_button'+ id).remove();
 
